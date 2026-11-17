@@ -7,7 +7,7 @@
     "satuan": "per papan",
     "badge": "Terlaris",
     "unggulan": true,
-    "gambar": "/gambar/papan-bunga-ucapan-selamat.jpg",
+    "gambar": "/gambar/img20241216160050540-1.webp",
     "alt": "Papan bunga ucapan selamat dengan rangkaian bunga artificial dan tulisan selamat",
     "ringkas": "Papan bunga ucapan selamat dengan rangkaian bunga artificial yang elegan untuk promosi jabatan, kelulusan, dan momen membanggakan.",
     "deskripsi": [
@@ -23,7 +23,13 @@
       "Kartu ucapan pengirim",
       "Pengiriman area Padang Panjang"
     ],
-    "tags": ["selamat", "sukses", "promosi", "kelulusan", "congratulation"]
+    "tags": [
+      "selamat",
+      "sukses",
+      "promosi",
+      "kelulusan",
+      "congratulation"
+    ]
   },
   {
     "nama": "Papan Bunga Duka Cita",
@@ -31,7 +37,6 @@
     "kategori": "Duka Cita",
     "harga": 700000,
     "satuan": "per papan",
-    "badge": "",
     "unggulan": true,
     "gambar": "/gambar/papan-bunga-duka-cita.jpg",
     "alt": "Papan bunga duka cita dengan warna putih dan hijau yang sopan",
@@ -49,7 +54,13 @@
       "Kartu ucapan pengirim",
       "Pengiriman area Padang Panjang"
     ],
-    "tags": ["duka", "belasungkawa", "takziah", "kematian", "condolence"]
+    "tags": [
+      "duka",
+      "belasungkawa",
+      "takziah",
+      "kematian",
+      "condolence"
+    ]
   },
   {
     "nama": "Papan Bunga Grand Opening",
@@ -75,7 +86,13 @@
       "Ornamen pita dan lampu (opsional)",
       "Pengiriman area Padang Panjang"
     ],
-    "tags": ["grand opening", "pembukaan", "toko baru", "kantor baru", "peresmian"]
+    "tags": [
+      "grand opening",
+      "pembukaan",
+      "toko baru",
+      "kantor baru",
+      "peresmian"
+    ]
   },
   {
     "nama": "Papan Bunga Wisuda",
@@ -83,7 +100,6 @@
     "kategori": "Ucapan Selamat",
     "harga": 600000,
     "satuan": "per papan",
-    "badge": "",
     "unggulan": true,
     "gambar": "/gambar/papan-bunga-wisuda.jpg",
     "alt": "Papan bunga wisuda dengan bunga warna lembut dan tulisan selamat wisuda",
@@ -101,7 +117,13 @@
       "Kartu ucapan pengirim",
       "Pengiriman area Padang Panjang"
     ],
-    "tags": ["wisuda", "lulus", "sarjana", "kelulusan", "graduation"]
+    "tags": [
+      "wisuda",
+      "lulus",
+      "sarjana",
+      "kelulusan",
+      "graduation"
+    ]
   },
   {
     "nama": "Papan Bunga Pernikahan",
@@ -109,7 +131,6 @@
     "kategori": "Pernikahan",
     "harga": 950000,
     "satuan": "per papan",
-    "badge": "",
     "unggulan": true,
     "gambar": "/gambar/papan-bunga-pernikahan.jpg",
     "alt": "Papan bunga pernikahan dengan bunga putih dan aksen emas",
@@ -127,7 +148,13 @@
       "Kartu ucapan pengirim",
       "Koordinasi dengan penyelenggara acara"
     ],
-    "tags": ["pernikahan", "wedding", "nikah", "mempelai", "selamat menikah"]
+    "tags": [
+      "pernikahan",
+      "wedding",
+      "nikah",
+      "mempelai",
+      "selamat menikah"
+    ]
   },
   {
     "nama": "Papan Bunga Custom Nama",
@@ -153,7 +180,13 @@
       "Mockup sebelum produksi",
       "Pengiriman area Padang Panjang"
     ],
-    "tags": ["custom", "nama", "ulang tahun", "anniversary", "hadiah"]
+    "tags": [
+      "custom",
+      "nama",
+      "ulang tahun",
+      "anniversary",
+      "hadiah"
+    ]
   },
   {
     "nama": "Papan Bunga Bentuk Hati",
@@ -161,7 +194,6 @@
     "kategori": "Custom & Bentuk Khusus",
     "harga": 1100000,
     "satuan": "per papan",
-    "badge": "",
     "unggulan": false,
     "gambar": "/gambar/papan-bunga-bentuk-hati.jpg",
     "alt": "Papan bunga bentuk hati dengan bunga merah dan pink",
@@ -179,7 +211,13 @@
       "Kartu ucapan custom",
       "Pengiriman dengan jadwal khusus"
     ],
-    "tags": ["hati", "heart", "lamaran", "anniversary", "kejutan"]
+    "tags": [
+      "hati",
+      "heart",
+      "lamaran",
+      "anniversary",
+      "kejutan"
+    ]
   },
   {
     "nama": "Papan Bunga Duka Cita Islami",
@@ -187,7 +225,6 @@
     "kategori": "Duka Cita",
     "harga": 750000,
     "satuan": "per papan",
-    "badge": "",
     "unggulan": false,
     "gambar": "/gambar/papan-bunga-duka-cita-islami.jpg",
     "alt": "Papan bunga duka cita islami dengan tulisan innalillahi dan bunga putih",
@@ -205,7 +242,13 @@
       "Kartu ucapan pengirim",
       "Pengiriman area Padang Panjang"
     ],
-    "tags": ["duka islami", "innalillahi", "muslim", "takziah", "belasungkawa"]
+    "tags": [
+      "duka islami",
+      "innalillahi",
+      "muslim",
+      "takziah",
+      "belasungkawa"
+    ]
   },
   {
     "nama": "Papan Bunga Peresmian Kantor",
@@ -213,7 +256,6 @@
     "kategori": "Grand Opening",
     "harga": 1350000,
     "satuan": "per papan",
-    "badge": "",
     "unggulan": false,
     "gambar": "/gambar/papan-bunga-peresmian-kantor.jpg",
     "alt": "Papan bunga peresmian kantor dengan desain korporat elegan",
@@ -231,6 +273,12 @@
       "Penyesuaian warna logo",
       "Pengiriman dan penempatan"
     ],
-    "tags": ["peresmian", "kantor", "gedung", "korporat", "resmikan"]
+    "tags": [
+      "peresmian",
+      "kantor",
+      "gedung",
+      "korporat",
+      "resmikan"
+    ]
   }
 ]
