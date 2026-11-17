@@ -1,0 +1,274 @@
+# ============================================================
+#  Pengaturan panel admin (Pages CMS) - gratis
+#  Buka https://app.pagescms.org lalu pilih repository ini.
+#  Panduan lengkap ada di PANDUAN-WEBSITE.md
+# ============================================================
+
+media:
+  input: gambar
+  output: /gambar
+  rename: safe
+  extensions: [jpg, jpeg, png, webp]
+  categories:
+    - image
+
+content:
+  - name: katalog
+    label: Katalog Papan Bunga
+    type: file
+    path: data/katalog.json
+    format: json
+    list: true
+    fields:
+      - name: nama
+        label: Nama produk
+        type: string
+        required: true
+      - name: slug
+        label: Alamat halaman (slug)
+        type: string
+        required: true
+        description: "Huruf kecil, pakai tanda hubung, tanpa spasi. Contoh: papan-bunga-duka-cita. Jangan diubah setelah website dikenal mesin pencari."
+      - name: kategori
+        label: Kategori
+        type: select
+        required: true
+        options:
+          values:
+            - Ucapan Selamat
+            - Duka Cita
+            - Grand Opening
+            - Pernikahan
+            - Custom & Bentuk Khusus
+      - name: harga
+        label: Harga (Rupiah, angka saja)
+        type: number
+        required: true
+      - name: satuan
+        label: Satuan harga
+        type: string
+        description: "Contoh: per papan, per rangkaian."
+      - name: badge
+        label: Label kecil (opsional)
+        type: string
+        description: "Contoh: Terlaris, Premium, Hemat. Kosongkan bila tidak perlu."
+      - name: unggulan
+        label: Tampilkan di beranda
+        type: boolean
+        description: "Aktifkan untuk 6 produk terbaik Anda."
+      - name: gambar
+        label: Foto produk
+        type: image
+        required: true
+      - name: gambarOg
+        label: Foto untuk media sosial (opsional)
+        type: image
+        description: "Ukuran ideal 1200 x 630 px. Jika kosong, foto produk dipakai."
+      - name: alt
+        label: Keterangan foto
+        type: string
+        description: "Jelaskan isi foto untuk mesin pencari dan pembaca layar."
+      - name: ringkas
+        label: Deskripsi singkat
+        type: text
+        description: "1-2 kalimat, tampil di kartu katalog dan hasil pencarian Google."
+      - name: deskripsi
+        label: Deskripsi lengkap
+        type: text
+        list: true
+        description: "Satu paragraf per baris. Isi 2-3 paragraf."
+      - name: ukuran
+        label: Ukuran
+        type: string
+      - name: bahan
+        label: Bahan
+        type: string
+      - name: pengerjaan
+        label: Lama pengerjaan
+        type: string
+      - name: termasuk
+        label: Yang didapat pembeli
+        type: string
+        list: true
+      - name: tags
+        label: Kata kunci pencarian
+        type: string
+        list: true
+        description: "Kata lain yang mungkin diketik pelanggan, mis. takziah, wisuda."
+
+  - name: kategori
+    label: Kategori
+    type: file
+    path: data/kategori.json
+    format: json
+    list: true
+    fields:
+      - name: nama
+        label: Nama kategori
+        type: string
+        required: true
+        description: "Harus sama persis dengan pilihan kategori di produk."
+      - name: slug
+        label: Slug kategori
+        type: string
+        required: true
+      - name: ikon
+        label: Ikon
+        type: select
+        options:
+          values:
+            - sparkle
+            - leaf
+            - star
+            - heart
+            - pen
+            - vase
+      - name: deskripsi
+        label: Deskripsi singkat
+        type: text
+      - name: gambar
+        label: Gambar kategori
+        type: image
+
+  - name: testimoni
+    label: Testimoni Pelanggan
+    type: file
+    path: data/testimoni.json
+    format: json
+    list: true
+    fields:
+      - name: nama
+        label: Nama pelanggan
+        type: string
+        required: true
+      - name: kota
+        label: Kota
+        type: string
+      - name: acara
+        label: Jenis acara
+        type: string
+      - name: rating
+        label: Rating (1-5)
+        type: number
+      - name: teks
+        label: Isi testimoni
+        type: text
+        required: true
+      - name: tanggal
+        label: Tanggal (YYYY-MM-DD)
+        type: string
+
+  - name: toko
+    label: Pengaturan Toko
+    type: file
+    path: data/toko.json
+    format: json
+    fields:
+      - name: nama
+        label: Nama usaha
+        type: string
+        required: true
+      - name: tagline
+        label: Tagline
+        type: string
+      - name: deskripsi
+        label: Deskripsi usaha
+        type: text
+        description: "Dipakai di beranda, footer, dan deskripsi Google."
+      - name: url
+        label: Alamat website
+        type: string
+        required: true
+        description: "Contoh: https://akioflorist.netlify.app atau domain sendiri. Tanpa garis miring di akhir."
+      - name: whatsapp
+        label: Nomor WhatsApp
+        type: string
+        required: true
+        description: "Format internasional tanpa tanda plus. Contoh: 6281234567890"
+      - name: whatsappPesan
+        label: Pesan WhatsApp otomatis
+        type: text
+      - name: email
+        label: Email
+        type: string
+      - name: instagram
+        label: Alamat Instagram
+        type: string
+      - name: alamat
+        label: Alamat lengkap (jalan)
+        type: string
+      - name: alamatKota
+        label: Kecamatan & kabupaten alamat
+        type: string
+        description: "Contoh: Batipuh, Kabupaten Tanah Datar. Dipakai untuk alamat resmi dan data Google."
+      - name: kota
+        label: Kota pemasaran
+        type: string
+        required: true
+        description: "Dipakai di judul website, mis. Padang Panjang."
+      - name: provinsi
+        label: Provinsi
+        type: string
+      - name: kodePos
+        label: Kode pos
+        type: string
+      - name: mapsUrl
+        label: Tautan Google Maps
+        type: string
+      - name: jam
+        label: Jam buka
+        type: string
+        description: "Contoh: Buka setiap hari · 24 jam atau Senin - Sabtu: 08.00 - 20.00 WIB"
+      - name: jamMinggu
+        label: Jam buka akhir pekan (opsional)
+        type: string
+      - name: buka24Jam
+        label: Buka 24 jam
+        type: boolean
+        description: "Aktifkan bila toko buka 24 jam. Data Google akan memakai 00.00 - 23.59 setiap hari."
+      - name: pengiriman
+        label: Keterangan pengiriman
+        type: text
+      - name: tampilkanHarga
+        label: Tampilkan harga di website
+        type: boolean
+        description: "Jika dimatikan, harga di katalog dan halaman produk diganti 'Harga sesuai desain'."
+      - name: hargaMulai
+        label: Harga mulai (angka saja)
+        type: number
+        description: "Hanya dipakai jika 'Tampilkan harga' diaktifkan."
+      - name: heroJudul
+        label: Judul beranda
+        type: string
+      - name: heroTeks
+        label: Teks pembuka beranda
+        type: text
+      - name: area
+        label: Area pengiriman
+        type: string
+        list: true
+      - name: tahunBerdiri
+        label: Tahun berdiri
+        type: number
+      - name: googleVerification
+        label: Kode verifikasi Google Search Console
+        type: string
+        description: "Tempel kode 'content' dari Google Search Console di sini agar website mudah diverifikasi."
+      - name: analytics
+        label: Analytics (opsional)
+        type: object
+        fields:
+          - name: google
+            label: ID Google Analytics (G-XXXX)
+            type: string
+          - name: plausibleDomain
+            label: Domain Plausible
+            type: string
+            description: "Contoh: akio-florist.netlify.app"
+          - name: umamiWebsiteId
+            label: ID Website Umami
+            type: string
+          - name: umamiSrc
+            label: URL script Umami
+            type: string
+            description: "Kosongkan untuk default https://analytics.umami.is/script.js"
