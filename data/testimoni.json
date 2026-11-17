@@ -1,0 +1,26 @@
+[
+  {
+    "nama": "Bapak Andi",
+    "kota": "Padang Panjang",
+    "acara": "Grand Opening Toko",
+    "rating": 5,
+    "teks": "Papan bunganya besar dan rapi, warnanya sesuai brand kami. Diantar tepat waktu untuk acara pembukaan. Terima kasih AKIO FLORIST.",
+    "tanggal": "2026-10-12"
+  },
+  {
+    "nama": "Ibu Sari",
+    "kota": "Batipuh",
+    "acara": "Duka Cita",
+    "rating": 5,
+    "teks": "Rangkaian putihnya sopan dan tulisannya jelas. Proses pesan cepat meski malam hari. Sangat membantu di momen sulit.",
+    "tanggal": "2026-09-28"
+  },
+  {
+    "nama": "Rizky",
+    "kota": "X Koto",
+    "acara": "Wisuda",
+    "rating": 5,
+    "teks": "Desainnya manis, nama dan gelar ditulis sesuai permintaan. Hasil foto sangat bagus untuk dokumentasi wisuda.",
+    "tanggal": "2026-09-15"
+  }
+]

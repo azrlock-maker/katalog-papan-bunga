@@ -1,0 +1,38 @@
+{
+  "nama": "AKIO FLORIST",
+  "tagline": "Papan Bunga untuk Setiap Momen Berharga",
+  "deskripsi": "AKIO FLORIST adalah toko bunga di Padang Panjang yang membuat papan bunga ucapan, duka cita, grand opening, pernikahan, wisuda, dan rangkaian custom. Melayani Padang Panjang, Batipuh, X Koto, Tanah Datar, dan sekitarnya. Seluruh rangkaian menggunakan bunga artificial premium yang tahan lama dan konsisten.",
+  "url": "https://akio-florist.netlify.app",
+  "whatsapp": "6281344703332",
+  "whatsappPesan": "Halo AKIO FLORIST, saya ingin bertanya tentang papan bunga.",
+  "email": "akioflorist@gmail.com",
+  "instagram": "https://www.instagram.com/akio_florist/",
+  "alamat": "Jl. Padang Panjang - Solok, Batang Gadih",
+  "alamatKota": "Batipuh, Kabupaten Tanah Datar",
+  "kota": "Padang Panjang",
+  "provinsi": "Sumatera Barat",
+  "kodePos": "",
+  "mapsUrl": "https://maps.app.goo.gl/NirdZbD27XBAEnAX8",
+  "jam": "Buka setiap hari · jam buka menyesuaikan (hubungi kami)",
+  "jamMinggu": "",
+  "buka24Jam": false,
+  "pengiriman": "Pengiriman di area Padang Panjang, Batipuh, X Koto, dan sekitarnya. Jadwal antar dikonfirmasi saat pemesanan.",
+  "tampilkanHarga": false,
+  "hargaMulai": 450000,
+  "area": [
+    "Padang Panjang",
+    "Batipuh",
+    "X Koto",
+    "Kabupaten Tanah Datar",
+    "Batusangkar"
+  ],
+  "heroJudul": "Papan bunga yang menyampaikan pesan Anda dengan indah",
+  "heroTeks": "Dirangkai dengan bunga artificial pilihan dan dikirim sesuai jadwal acara. Melayani Padang Panjang, Batipuh, X Koto, dan sekitarnya. Pilih desain siap pesan atau konsultasikan kebutuhan Anda dengan tim kami.",
+  "googleVerification": "",
+  "analytics": {
+    "google": "",
+    "plausibleDomain": "",
+    "umamiWebsiteId": "",
+    "umamiSrc": "https://analytics.umami.is/script.js"
+  }
+}

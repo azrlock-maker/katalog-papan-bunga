@@ -1,0 +1,37 @@
+[
+  {
+    "nama": "Ucapan Selamat",
+    "slug": "ucapan-selamat",
+    "ikon": "sparkle",
+    "deskripsi": "Untuk promosi jabatan, kelulusan, prestasi, dan momen membanggakan lainnya.",
+    "gambar": "/gambar/papan-bunga-ucapan-selamat.jpg"
+  },
+  {
+    "nama": "Duka Cita",
+    "slug": "duka-cita",
+    "ikon": "leaf",
+    "deskripsi": "Ungkapan belasungkawa yang sopan, cepat, dan diantar dengan penuh hormat.",
+    "gambar": "/gambar/papan-bunga-duka-cita.jpg"
+  },
+  {
+    "nama": "Grand Opening",
+    "slug": "grand-opening",
+    "ikon": "star",
+    "deskripsi": "Papan bunga besar dan mencolok untuk pembukaan toko, kantor, atau cabang baru.",
+    "gambar": "/gambar/papan-bunga-grand-opening.jpg"
+  },
+  {
+    "nama": "Pernikahan",
+    "slug": "pernikahan",
+    "ikon": "heart",
+    "deskripsi": "Ucapan pernikahan dengan nuansa lembut dan rangkaian bunga yang romantis.",
+    "gambar": "/gambar/papan-bunga-pernikahan.jpg"
+  },
+  {
+    "nama": "Custom & Bentuk Khusus",
+    "slug": "custom",
+    "ikon": "pen",
+    "deskripsi": "Bentuk hati, nama besar, warna sesuai brand, atau desain khusus permintaan Anda.",
+    "gambar": "/gambar/papan-bunga-custom-nama.jpg"
+  }
+]
