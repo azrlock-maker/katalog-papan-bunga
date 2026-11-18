@@ -53,6 +53,11 @@ const tanpaGarisMiring = (nilai) => String(nilai).replace(/\/+$/, "");
 const alamatAbsolut = (jalur) => tanpaGarisMiring(toko.url) + jalur;
 
 const nomorWa = String(toko.whatsapp || "").replace(/\D/g, "");
+const logoToko = toko.logo
+  ? /^https?:\/\//.test(toko.logo) || toko.logo.startsWith("/")
+    ? toko.logo
+    : "/" + toko.logo
+  : "";
 
 const skripAnalytics = () => {
   const a = (toko && toko.analytics) || {};
@@ -254,7 +259,7 @@ const header = (aktif) => `
   <header class="site-header">
     <div class="container header-inner">
       <a class="brand" href="/" aria-label="${esc(toko.nama)} - beranda">
-        <span class="brand-mark">${ikon("bunga")}</span>
+${logoToko ? `<img class="brand-logo" src="${esc(logoToko)}" alt="${esc(toko.nama)}" width="40" height="40" />` : `<span class="brand-mark">${ikon("bunga")}</span>`}
         <span>
           <span class="brand-name">${esc(toko.nama)}</span>
           <span class="brand-sub">Papan Bunga &middot; ${esc(toko.kota)}</span>
@@ -288,7 +293,7 @@ const footer = () => `
       <div class="footer-grid">
         <div class="footer-about">
           <a class="brand" href="/">
-            <span class="brand-mark">${ikon("bunga")}</span>
+            ${logoToko ? `<img class="brand-logo" src="${esc(logoToko)}" alt="${esc(toko.nama)}" width="40" height="40" />` : `<span class="brand-mark">${ikon("bunga")}</span>`}
             <span>
               <span class="brand-name">${esc(toko.nama)}</span>
               <span class="brand-sub">Papan Bunga &middot; ${esc(toko.kota)}</span>
@@ -495,7 +500,7 @@ const skemaToko = {
   name: toko.nama,
   description: toko.deskripsi,
   url: alamatAbsolut("/"),
-  image: alamatAbsolut("/gambar/og-default.jpg"),
+  image: alamatAbsolut(logoToko || "/gambar/og-default.jpg"),
   logo: alamatAbsolut("/favicon.svg"),
   telephone: "+" + nomorWa,
   ...(toko.email ? { email: toko.email } : {}),
@@ -825,6 +830,7 @@ const beranda = () => {
     jalur: "/",
     isi,
     aktif: "beranda",
+    gambarOg: logoToko || "/gambar/og-default.jpg",
     skema: [skemaToko, skemaFaq],
   });
 };
