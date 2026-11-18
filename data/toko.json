@@ -3,7 +3,7 @@
   "logo": "/gambar/midnight-green-minimalist-logo-design-1.png",
   "tagline": "Papan Bunga untuk Setiap Momen Berharga",
   "deskripsi": "AKIO FLORIST adalah toko bunga di Padang Panjang yang membuat papan bunga ucapan, duka cita, grand opening, pernikahan, wisuda, dan rangkaian custom. Melayani Padang Panjang, Batipuh, X Koto, Tanah Datar, dan sekitarnya. Seluruh rangkaian menggunakan bunga artificial premium yang tahan lama dan konsisten.",
-  "url": "https://akio-florist.netlify.app",
+  "url": "https://katalog-papan-bunga.pages.dev",
   "whatsapp": "6281344703332",
   "whatsappPesan": "Halo AKIO FLORIST, saya ingin bertanya tentang papan bunga.",
   "email": "akioflorist@gmail.com",
@@ -19,14 +19,14 @@
   "tampilkanHarga": false,
   "hargaMulai": 200000,
   "heroJudul": "Papan bunga yang menyampaikan pesan Anda dengan indah",
-  "heroTeks": "Pilih model papan bunga (standard, double, mahkota 2 titik, premium, exclusive) dan sesuaikan tulisan sesuai acara Anda. Melayani Padang Panjang, Batipuh, X Koto, dan sekitarnya. Pesan via WhatsApp kapan saja.",
+  "heroTeks": "Pilih model papan bunga (standard, double, mahkota 2 titik, premium, exclusive) dan sesuaikan tulisan sesuai acara Anda. Melayani Area Padang Panjang, Batipuh, X Koto, dan sekitarnya. Pesan via WhatsApp kapan saja.",
   "area": [
     "Padang Panjang",
     "Batipuh",
     "X Koto",
-    "Kabupaten Tanah Datar",
-    "Batusangkar"
+    "Kabupaten Tanah Datar"
   ],
+  "tahunBerdiri": 2023,
   "analytics": {
     "umamiSrc": "https://analytics.umami.is/script.js"
   }
