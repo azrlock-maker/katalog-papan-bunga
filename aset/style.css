@@ -296,6 +296,15 @@ ol {
   flex: none;
 }
 
+.brand-logo {
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  object-fit: contain;
+  background: var(--bg-soft);
+  flex: none;
+}
+
 .brand-mark svg {
   width: 24px;
   height: 24px;

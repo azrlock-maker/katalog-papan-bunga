@@ -168,6 +168,10 @@ content:
         label: Nama usaha
         type: string
         required: true
+      - name: logo
+        label: Logo toko
+        type: image
+        description: "Logo persegi, minimal 200 x 200 px. Jika kosong, ikon bunga dipakai."
       - name: tagline
         label: Tagline
         type: string
