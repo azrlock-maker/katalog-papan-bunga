@@ -60,10 +60,11 @@ content:
         label: Foto produk
         type: image
         required: true
+        description: "Rasio 4:3 (mis. 1200 x 900 px). Crop manual sebelum upload agar tidak terpotong/letterbox."
       - name: gambarOg
         label: Foto untuk media sosial (opsional)
         type: image
-        description: "Ukuran ideal 1200 x 630 px. Jika kosong, foto produk dipakai."
+        description: "Ukuran ideal 1200 x 630 px. Crop manual sebelum upload. Jika kosong, foto produk dipakai."
       - name: alt
         label: Keterangan foto
         type: string
@@ -129,6 +130,7 @@ content:
       - name: gambar
         label: Gambar kategori
         type: image
+        description: "Rasio 4:3 (mis. 1200 x 900 px). Crop manual sebelum upload."
 
   - name: testimoni
     label: Testimoni Pelanggan
@@ -171,7 +173,7 @@ content:
       - name: logo
         label: Logo toko
         type: image
-        description: "Logo persegi, minimal 200 x 200 px. Jika kosong, ikon bunga dipakai."
+        description: "Logo persegi, min 200 x 200 px. Crop manual sebelum upload. Jika kosong, ikon bunga dipakai."
       - name: tagline
         label: Tagline
         type: string
