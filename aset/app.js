@@ -16,6 +16,7 @@
     document.documentElement.setAttribute("data-theme", t);
     try {
       localStorage.setItem("akio-tema", t);
+      localStorage.setItem("akio-tema-manual", new Date().toDateString());
     } catch (e) {}
     if (tombolTema) {
       tombolTema.setAttribute(
@@ -184,6 +185,60 @@
   }
 
   /* ----------------------------- Tahun otomatis ------------------------ */
+
+  /* ----------------------------- Quick view / pesan cepat ---------------- */
+  var qv = document.getElementById("quickview");
+  if (qv) {
+    var qvNama = document.getElementById("qv-nama");
+    var qvForm = document.getElementById("qv-form");
+    var qvWa = qv.getAttribute("data-wa") || "6281344703332";
+
+    function bukaQv(nama) {
+      if (qvNama) qvNama.textContent = "Pesan: " + (nama || "Papan Bunga");
+      qv.setAttribute("aria-hidden", "false");
+      document.body.classList.add("qv-open");
+      var inputNama = qvForm ? qvForm.querySelector('[name="nama"]') : null;
+      if (inputNama) setTimeout(function () { inputNama.focus(); }, 50);
+    }
+
+    function tutupQv() {
+      qv.setAttribute("aria-hidden", "true");
+      document.body.classList.remove("qv-open");
+    }
+
+    document.querySelectorAll(".btn-quickview").forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        bukaQv(btn.getAttribute("data-nama"));
+      });
+    });
+
+    qv.querySelectorAll("[data-qv-close]").forEach(function (el) {
+      el.addEventListener("click", tutupQv);
+    });
+
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape" && qv.getAttribute("aria-hidden") === "false") tutupQv();
+    });
+
+    if (qvForm) {
+      qvForm.addEventListener("submit", function (e) {
+        e.preventDefault();
+        var fd = new FormData(qvForm);
+        var namaProduk = (qvNama && qvNama.textContent.replace(/^Pesan:\s*/, "")) || "Papan Bunga";
+        var pesan = "Halo AKIO FLORIST, saya ingin pesan " + namaProduk + ".\n";
+        pesan += "Nama pemesan: " + (fd.get("nama") || "") + "\n";
+        pesan += "WhatsApp: " + (fd.get("wa") || "") + "\n";
+        pesan += "Teks di papan: " + (fd.get("teks") || "") + "\n";
+        if (fd.get("tanggal")) pesan += "Tanggal acara: " + fd.get("tanggal") + "\n";
+        if (fd.get("catatan")) pesan += "Catatan: " + fd.get("catatan") + "\n";
+        pesan += "Mohon info harga & jadwal. Terima kasih.";
+        var url = "https://wa.me/" + qvWa + "?text=" + encodeURIComponent(pesan);
+        window.open(url, "_blank", "noopener");
+        tutupQv();
+        qvForm.reset();
+      });
+    }
+  }
 
   var tahun = document.getElementById("tahun");
   if (tahun) tahun.textContent = new Date().getFullYear();

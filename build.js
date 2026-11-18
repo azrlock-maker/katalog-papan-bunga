@@ -174,6 +174,7 @@ const petaIkonKategori = {
   heart: "hati",
   pen: "pena",
   vase: "vas",
+  perisai: "perisai",
 };
 
 /* ----------------------------- Data turunan ---------------------------- */
@@ -209,7 +210,7 @@ if (produkUnggulan.length < 6) {
   }
 }
 
-const semuaKategori = kategori.filter((k) => kategoriDipakai.has(k.nama));
+const semuaKategori = kategori;
 
 const faq = [
   {
@@ -313,7 +314,7 @@ const footer = () => `
           <h2 class="footer-title">Kategori</h2>
           <ul class="footer-links">
             ${semuaKategori
-              .map((k) => `<li><a href="/katalog/?kategori=${esc(k.slug)}">${esc(k.nama)}</a></li>`)
+              .map((k) => `<li><a href="/katalog/${esc(k.slug)}/">${esc(k.nama)}</a></li>`)
               .join("")}
           </ul>
         </div>
@@ -373,12 +374,16 @@ const layout = ({
     (function () {
       try {
         var tersimpan = localStorage.getItem("akio-tema");
-        var tema =
-          tersimpan === "light" || tersimpan === "dark"
-            ? tersimpan
-            : window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches
-              ? "dark"
-              : "light";
+        var manualTanggal = localStorage.getItem("akio-tema-manual");
+        var hariIni = new Date().toDateString();
+        var tema;
+        if ((tersimpan === "light" || tersimpan === "dark") && manualTanggal === hariIni) {
+          tema = tersimpan;
+        } else {
+          var jam = new Date().getHours();
+          tema = (jam >= 6 && jam < 18) ? "light" : "dark";
+          try { localStorage.removeItem("akio-tema"); localStorage.removeItem("akio-tema-manual"); } catch (e) {}
+        }
         document.documentElement.setAttribute("data-theme", tema);
       } catch (e) {}
     })();
@@ -426,6 +431,22 @@ ${isi}
   </main>
   ${footer()}
   ${tombolWaMengambang()}
+  <div class="quickview" id="quickview" aria-hidden="true" role="dialog" aria-modal="true" data-wa="${nomorWa}">
+    <div class="quickview-backdrop" data-qv-close></div>
+    <div class="quickview-panel">
+      <button class="quickview-close" type="button" data-qv-close aria-label="Tutup">×</button>
+      <h2 id="qv-nama">Pesan Cepat</h2>
+      <p class="qv-sub">Isi detail pesanan, kami kirim ke WhatsApp untuk konfirmasi harga &amp; jadwal.</p>
+      <form id="qv-form">
+        <label>Nama pemesan<input type="text" name="nama" required placeholder="Nama Anda" /></label>
+        <label>Nomor WhatsApp<input type="tel" name="wa" required placeholder="08xxxxxxxxxx" /></label>
+        <label>Teks di papan bunga<textarea name="teks" rows="3" required placeholder="Contoh: Selamat &amp; Sukses - Budi Santoso"></textarea></label>
+        <label>Tanggal acara<input type="date" name="tanggal" /></label>
+        <label>Catatan (opsional)<textarea name="catatan" rows="2" placeholder="Warna, ukuran, alamat pengiriman, dll."></textarea></label>
+        <button class="btn btn-primary" type="submit">${ikon("wa")} Kirim ke WhatsApp</button>
+      </form>
+    </div>
+  </div>
   <script src="/aset/app.js" defer></script>
 </body>
 </html>
@@ -441,20 +462,22 @@ const kartuProduk = (p) => `
     <div class="produk-body">
       <span class="produk-kategori">${esc(p.kategori)}</span>
       <h3><a href="/produk/${esc(p.slug)}/">${esc(p.nama)}</a></h3>
-      <p class="produk-ringkas">${esc(p.ringkas || "")}</p>
       <div class="produk-foot">
         <span class="produk-harga">${
           tampilHarga
             ? `${rupiah(p.harga)} <small>${esc(p.satuan || "per papan")}</small>`
             : "Harga sesuai desain"
         }</span>
-        <span class="produk-more">Detail ${ikon("panah")}</span>
+        <div class="produk-aksi">
+          <button class="btn btn-sm btn-quickview" type="button" data-slug="${esc(p.slug)}" data-nama="${esc(p.nama)}">Pesan cepat</button>
+          <span class="produk-more">Detail ${ikon("panah")}</span>
+        </div>
       </div>
     </div>
   </article>`;
 
 const kartuKategori = (k) => `
-  <a class="kategori-card reveal" href="/katalog/?kategori=${esc(k.slug)}">
+  <a class="kategori-card reveal" href="/katalog/${esc(k.slug)}/">
     <span class="kategori-icon">${ikon(petaIkonKategori[k.ikon] || "bunga")}</span>
     <img src="${esc(k.gambar)}" alt="${esc(k.nama)}" width="1200" height="900" loading="lazy" />
     <div class="kategori-body">
@@ -619,8 +642,8 @@ const beranda = () => {
       <div class="container">
         <div class="section-head">
           <span class="eyebrow">Kategori</span>
-          <h2>Pilih sesuai momen Anda</h2>
-          <p>Dari ucapan selamat hingga belasungkawa, setiap rangkaian dirancang dengan detail dan dikirim tepat waktu.</p>
+          <h2>Pilih tipe papan bunga</h2>
+          <p>Standard, double, mahkota 2 titik, premium, dan exclusive. Setiap desain dapat disesuaikan tulisan dan warnanya.</p>
         </div>
         <div class="kategori-grid">
           ${semuaKategori.map(kartuKategori).join("")}
@@ -893,6 +916,93 @@ const halamanKatalog = () => {
         name: "Katalog papan bunga " + toko.nama,
         numberOfItems: produk.length,
         itemListElement: produk.map((p, i) => ({
+          "@type": "ListItem",
+          position: i + 1,
+          name: p.nama,
+          url: alamatAbsolut(`/produk/${p.slug}/`),
+        })),
+      },
+    ],
+  });
+};
+
+const halamanKategori = (k) => {
+  const slug = k.slug;
+  const produkKategori = produk.filter((p) => p.kategori === k.nama);
+  const isi = `
+    <section class="page-hero">
+      <div class="container">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="/">Beranda</a> ${ikon("chevron")}
+          <a href="/katalog/">Katalog</a> ${ikon("chevron")}
+          <span>${esc(k.nama)}</span>
+        </nav>
+        <span class="eyebrow">Koleksi</span>
+        <h1>Papan bunga ${esc(k.nama)}</h1>
+        <p>${esc(k.deskripsi || "")} ${produkKategori.length} pilihan desain siap dipesan, tulisan dan warna dapat disesuaikan.</p>
+      </div>
+    </section>
+
+    <section class="section-tight">
+      <div class="container">
+        <div class="katalog-toolbar">
+          <div class="filter-chips" role="group" aria-label="Koleksi lainnya">
+            <a class="chip" href="/katalog/">Semua</a>
+            ${semuaKategori
+              .map(
+                (kk) =>
+                  `<a class="chip${kk.slug === slug ? ' chip-aktif' : ''}" href="/katalog/${esc(kk.slug)}/">${esc(kk.nama)}</a>`,
+              )
+              .join("")}
+          </div>
+        </div>
+
+        <p class="result-info">Menampilkan ${produkKategori.length} produk</p>
+
+        <div class="produk-grid">
+          ${produkKategori.map(kartuProduk).join("")}
+        </div>
+
+        ${
+          produkKategori.length === 0
+            ? `<div class="empty-state" style="display:block;">Belum ada produk di kategori ini.</div>`
+            : ""
+        }
+      </div>
+    </section>
+
+    <section class="cta-band">
+      <div class="container cta-inner">
+        <div>
+          <h2>Butuh desain khusus untuk ${esc(k.nama)}?</h2>
+          <p>Konsultasikan warna, ukuran, dan tulisan. Kami bantu rekomendasikan yang paling sesuai.</p>
+        </div>
+        <div class="cta-actions">
+          <a class="btn btn-gold" href="${tautanWa("Halo " + toko.nama + ", saya ingin pesan papan bunga kategori " + k.nama + ".")}" target="_blank" rel="noopener">${ikon("wa")} Chat WhatsApp</a>
+          <a class="btn btn-outline" href="/katalog/">Semua katalog</a>
+        </div>
+      </div>
+    </section>`;
+  return layout({
+    judul: `Papan Bunga ${k.nama} ${toko.kota} | ${toko.nama}`,
+    deskripsi: potongTeks(
+      `${k.nama}: ${k.deskripsi || ""} ${produkKategori.length} pilihan papan bunga di ${toko.kota}. Pesan via WhatsApp, pengiriman terjadwal.`,
+    ),
+    jalur: `/katalog/${slug}/`,
+    isi,
+    aktif: "katalog",
+    skema: [
+      skemaRemah([
+        { nama: "Beranda", jalur: "/" },
+        { nama: "Katalog", jalur: "/katalog/" },
+        { nama: k.nama, jalur: `/katalog/${slug}/` },
+      ]),
+      {
+        "@context": "https://schema.org",
+        "@type": "ItemList",
+        name: `Papan bunga ${k.nama} ${toko.nama}`,
+        numberOfItems: produkKategori.length,
+        itemListElement: produkKategori.map((p, i) => ({
           "@type": "ListItem",
           position: i + 1,
           name: p.nama,
@@ -1196,6 +1306,9 @@ fs.mkdirSync(DIST, { recursive: true });
 
 tulis("index.html", beranda());
 tulis("katalog/index.html", halamanKatalog());
+for (const k of semuaKategori) {
+  tulis(`katalog/${k.slug}/index.html`, halamanKategori(k));
+}
 for (const p of produk) {
   tulis(`produk/${p.slug}/index.html`, halamanProduk(p));
 }
@@ -1211,6 +1324,7 @@ fs.copyFileSync(path.join(ROOT, "favicon.svg"), path.join(DIST, "favicon.svg"));
 const urlSitemap = [
   { jalur: "/", prioritas: "1.0" },
   { jalur: "/katalog/", prioritas: "0.9" },
+  ...semuaKategori.map((k) => ({ jalur: `/katalog/${k.slug}/`, prioritas: "0.85" })),
   ...produk.map((p) => ({ jalur: `/produk/${p.slug}/`, prioritas: "0.8" })),
   ...areaDipakai.map((a) => ({ jalur: `/area/${slugArea(a)}/`, prioritas: "0.7" })),
 ];

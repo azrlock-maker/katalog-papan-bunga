@@ -35,11 +35,11 @@ content:
         required: true
         options:
           values:
-            - Ucapan Selamat
-            - Duka Cita
-            - Grand Opening
-            - Pernikahan
-            - Custom & Bentuk Khusus
+            - Papan Bunga Standard
+            - Papan Bunga Double
+            - Papan Bunga Standard Mahkota 2 Titik
+            - Papan Bunga Premium
+            - Papan Bunga Exclusive
       - name: harga
         label: Harga (Rupiah, angka saja)
         type: number

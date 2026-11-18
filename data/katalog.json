@@ -2,7 +2,7 @@
   {
     "nama": "Papan Bunga Ucapan Selamat",
     "slug": "papan-bunga-ucapan-selamat",
-    "kategori": "Ucapan Selamat",
+    "kategori": "Papan Bunga Standard",
     "harga": 650000,
     "satuan": "per papan",
     "badge": "Terlaris",
@@ -11,14 +11,13 @@
     "alt": "Papan bunga ucapan selamat dengan rangkaian bunga artificial dan tulisan selamat",
     "ringkas": "Papan bunga ucapan selamat dengan rangkaian bunga artificial yang elegan untuk promosi jabatan, kelulusan, dan momen membanggakan.",
     "deskripsi": [
-      "Sampaikan rasa bangga dan turut berbahagia lewat papan bunga ucapan selamat yang dirangkai dengan rapi. Rangkaian bunga artificial premium dipilih agar warna tetap cantik saat foto dan tahan lama setelah acara.",
-      "Ukuran papan standar 2 x 1,2 meter sudah cukup mencolok untuk diletakkan di depan kantor, aula, atau rumah. Tulisan ucapan dapat disesuaikan dengan nama penerima dan pesan Anda."
+      "Papan bunga ucapan selamat dengan rangkaian bunga artificial yang elegan untuk promosi jabatan, kelulusan, dan momen membanggakan."
     ],
-    "ukuran": "2 x 1 ,2meter",
+    "ukuran": "2 x 1 meter",
     "bahan": "Bunga artificial premium",
     "pengerjaan": "1 hari kerja",
     "termasuk": [
-      "Rangkaian bunga satu sisi",
+      "Rangkaian bunga dua sisi",
       "Papan dan tulisan custom",
       "Kartu ucapan pengirim",
       "Pengiriman area Padang Panjang"
@@ -34,16 +33,16 @@
   {
     "nama": "Papan Bunga Duka Cita",
     "slug": "papan-bunga-duka-cita",
-    "kategori": "Duka Cita",
+    "kategori": "Papan Bunga Standard",
     "harga": 700000,
     "satuan": "per papan",
+    "badge": "",
     "unggulan": true,
     "gambar": "/gambar/papan-bunga-duka-cita.jpg",
     "alt": "Papan bunga duka cita dengan warna putih dan hijau yang sopan",
     "ringkas": "Ungkapan belasungkawa dengan rangkaian bunga putih hijau yang sopan, siap diantar cepat ke rumah duka.",
     "deskripsi": [
-      "Papan bunga duka cita dirancang dengan komposisi warna tenang dan tulisan yang jelas, sehingga pesan belasungkawa tersampaikan dengan penuh hormat. Rangkaian bunga putih dipadukan daun hijau memberi kesan bersih dan khidmat.",
-      "Kami memahami waktu sangat penting pada momen seperti ini. Pesanan dapat dikonfirmasi kapan saja, dan jadwal pengiriman tercepat akan kami informasikan saat pemesanan."
+      "Ungkapan belasungkawa dengan rangkaian bunga putih hijau yang sopan, siap diantar cepat ke rumah duka."
     ],
     "ukuran": "2 x 1 meter",
     "bahan": "Bunga artificial putih & daun hijau",
@@ -65,7 +64,7 @@
   {
     "nama": "Papan Bunga Grand Opening",
     "slug": "papan-bunga-grand-opening",
-    "kategori": "Grand Opening",
+    "kategori": "Papan Bunga Standard",
     "harga": 1250000,
     "satuan": "per papan",
     "badge": "Premium",
@@ -74,8 +73,7 @@
     "alt": "Papan bunga grand opening ukuran besar dengan bunga warna cerah",
     "ringkas": "Papan bunga grand opening berukuran besar dengan warna cerah dan rangkaian penuh untuk pembukaan usaha baru.",
     "deskripsi": [
-      "Buat pembukaan toko, kantor, atau cabang baru terlihat meriah dengan papan bunga grand opening berukuran besar. Rangkaian bunga disusun penuh dan berlapis sehingga tetap terlihat megah dari kejauhan maupun saat difoto.",
-      "Warna rangkaian dapat disesuaikan dengan identitas brand Anda. Tim kami juga dapat menambahkan ornamen dan tulisan nama perusahaan sesuai permintaan."
+      "Papan bunga grand opening berukuran besar dengan warna cerah dan rangkaian penuh untuk pembukaan usaha baru."
     ],
     "ukuran": "2,5 x 1,2 meter",
     "bahan": "Bunga artificial premium & ornamen",
@@ -97,16 +95,16 @@
   {
     "nama": "Papan Bunga Wisuda",
     "slug": "papan-bunga-wisuda",
-    "kategori": "Ucapan Selamat",
+    "kategori": "Papan Bunga Standard",
     "harga": 600000,
     "satuan": "per papan",
+    "badge": "",
     "unggulan": true,
     "gambar": "/gambar/papan-bunga-wisuda.jpg",
     "alt": "Papan bunga wisuda dengan bunga warna lembut dan tulisan selamat wisuda",
     "ringkas": "Ucapan selamat wisuda dengan nuansa bunga lembut dan tulisan custom nama serta gelar sarjana.",
     "deskripsi": [
-      "Rayakan kelulusan dengan papan bunga wisuda yang manis dan berkesan. Palet warna lembut seperti putih, pink, dan krem cocok untuk foto bersama keluarga di kampus maupun di rumah.",
-      "Nama, gelar, dan ucapan dapat ditulis sesuai permintaan. Pesan kapan saja, jadwal pengiriman akan dikonfirmasi saat pemesanan."
+      "Ucapan selamat wisuda dengan nuansa bunga lembut dan tulisan custom nama serta gelar sarjana."
     ],
     "ukuran": "2 x 1 meter",
     "bahan": "Bunga artificial premium",
@@ -128,16 +126,16 @@
   {
     "nama": "Papan Bunga Pernikahan",
     "slug": "papan-bunga-pernikahan",
-    "kategori": "Pernikahan",
+    "kategori": "Papan Bunga Standard",
     "harga": 950000,
     "satuan": "per papan",
+    "badge": "",
     "unggulan": true,
     "gambar": "/gambar/papan-bunga-pernikahan.jpg",
     "alt": "Papan bunga pernikahan dengan bunga putih dan aksen emas",
     "ringkas": "Papan bunga pernikahan bernuansa romantis dengan bunga putih dan aksen emas untuk hari bahagia.",
     "deskripsi": [
-      "Papan bunga pernikahan kami dirangkai dengan palet putih, blush, dan sentuhan emas yang memberi kesan mewah namun tetap hangat. Cocok untuk ucapan dari keluarga, sahabat, atau rekan kerja.",
-      "Rangkaian dapat disesuaikan dengan tema dekorasi acara. Tim kami dapat berkoordinasi langsung dengan wedding organizer atau keluarga mempelai."
+      "Papan bunga pernikahan bernuansa romantis dengan bunga putih dan aksen emas untuk hari bahagia."
     ],
     "ukuran": "2 x 1 meter",
     "bahan": "Bunga artificial premium & aksen emas",
@@ -159,7 +157,7 @@
   {
     "nama": "Papan Bunga Custom Nama",
     "slug": "papan-bunga-custom-nama",
-    "kategori": "Custom & Bentuk Khusus",
+    "kategori": "Papan Bunga Standard",
     "harga": 800000,
     "satuan": "per papan",
     "badge": "Favorit",
@@ -168,8 +166,7 @@
     "alt": "Papan bunga custom dengan tulisan nama besar dan rangkaian bunga warna sesuai permintaan",
     "ringkas": "Papan bunga custom dengan tulisan nama besar dan warna sesuai permintaan, cocok untuk hadiah pribadi maupun brand.",
     "deskripsi": [
-      "Ingin papan bunga yang benar-benar berbeda? Layanan custom kami memungkinkan Anda memilih bentuk tulisan, warna bunga, hingga ukuran papan. Cocok untuk hadiah ulang tahun, anniversary, atau brand activation.",
-      "Kirimkan referensi desain dan kebutuhan Anda lewat WhatsApp. Tim kami akan memberikan saran rangkaian dan waktu pengerjaan sebelum pesanan dikonfirmasi."
+      "Papan bunga custom dengan tulisan nama besar dan warna sesuai permintaan, cocok untuk hadiah pribadi maupun brand."
     ],
     "ukuran": "2 x 1 meter (bisa disesuaikan)",
     "bahan": "Bunga sesuai pilihan & papan custom",
@@ -189,49 +186,18 @@
     ]
   },
   {
-    "nama": "Papan Bunga Bentuk Hati",
-    "slug": "papan-bunga-bentuk-hati",
-    "kategori": "Custom & Bentuk Khusus",
-    "harga": 1100000,
-    "satuan": "per papan",
-    "unggulan": false,
-    "gambar": "/gambar/papan-bunga-bentuk-hati.jpg",
-    "alt": "Papan bunga bentuk hati dengan bunga merah dan pink",
-    "ringkas": "Papan bunga bentuk hati berukuran besar untuk anniversary, lamaran, atau kejutan ulang tahun pasangan.",
-    "deskripsi": [
-      "Papan bunga bentuk hati dibuat dengan rangka khusus dan disusun penuh agar bentuknya tetap tegas dari segala sudut. Pilihan warna merah, pink, atau putih dapat disesuaikan dengan suasana acara.",
-      "Pesanan dapat dilengkapi kartu ucapan dan pengiriman pada jam tertentu, cocok untuk kejutan lamaran atau anniversary."
-    ],
-    "ukuran": "1,5 x 1,5 meter",
-    "bahan": "Bunga premium & rangka custom",
-    "pengerjaan": "2 - 3 hari kerja",
-    "termasuk": [
-      "Rangka bentuk hati",
-      "Rangkaian bunga penuh",
-      "Kartu ucapan custom",
-      "Pengiriman dengan jadwal khusus"
-    ],
-    "tags": [
-      "hati",
-      "heart",
-      "lamaran",
-      "anniversary",
-      "kejutan"
-    ]
-  },
-  {
     "nama": "Papan Bunga Duka Cita Islami",
     "slug": "papan-bunga-duka-cita-islami",
-    "kategori": "Duka Cita",
+    "kategori": "Papan Bunga Standard",
     "harga": 750000,
     "satuan": "per papan",
+    "badge": "",
     "unggulan": false,
     "gambar": "/gambar/papan-bunga-duka-cita-islami.jpg",
     "alt": "Papan bunga duka cita islami dengan tulisan innalillahi dan bunga putih",
     "ringkas": "Papan bunga duka cita islami dengan tulisan doa dan rangkaian bunga putih yang tenang.",
     "deskripsi": [
-      "Papan bunga duka cita islami dilengkapi tulisan doa yang lazim digunakan, seperti Innalillahi wa inna ilaihi raji'un, dengan tata letak yang rapi dan mudah dibaca.",
-      "Rangkaian bunga putih dan hijau memberi kesan tenang dan menghormati. Pesanan mendesak dapat diproses lebih cepat, silakan hubungi kami lewat WhatsApp."
+      "Papan bunga duka cita islami dengan tulisan doa dan rangkaian bunga putih yang tenang."
     ],
     "ukuran": "2 x 1 meter",
     "bahan": "Bunga putih & daun hijau",
@@ -253,16 +219,16 @@
   {
     "nama": "Papan Bunga Peresmian Kantor",
     "slug": "papan-bunga-peresmian-kantor",
-    "kategori": "Grand Opening",
+    "kategori": "Papan Bunga Standard",
     "harga": 1350000,
     "satuan": "per papan",
+    "badge": "",
     "unggulan": false,
     "gambar": "/gambar/papan-bunga-peresmian-kantor.jpg",
     "alt": "Papan bunga peresmian kantor dengan desain korporat elegan",
     "ringkas": "Papan bunga peresmian kantor dan gedung dengan desain korporat yang elegan dan tahan lama.",
     "deskripsi": [
-      "Papan bunga peresmian kantor dirancang dengan komposisi rapi dan warna korporat, memberi kesan profesional bagi tamu undangan dan mitra bisnis.",
-      "Kami dapat menyesuaikan warna dengan logo perusahaan serta menyiapkan beberapa papan sekaligus untuk acara peresmian berskala besar."
+      "Papan bunga peresmian kantor dan gedung dengan desain korporat yang elegan dan tahan lama."
     ],
     "ukuran": "2,5 x 1,2 meter",
     "bahan": "Bunga premium & ornamen korporat",
