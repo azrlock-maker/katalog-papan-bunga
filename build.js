@@ -825,7 +825,7 @@ const beranda = () => {
     </section>`;
 
   return layout({
-    judul: `Papan Bunga ${toko.kota} | ${toko.nama} - Ucapan, Duka Cita & Grand Opening`,
+    judul: `Papan Bunga ${toko.kota} | ${toko.nama} - Standard, Double, Premium & Exclusive`,
     deskripsi: potongTeks(toko.deskripsi),
     jalur: "/",
     isi,
