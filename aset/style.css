@@ -788,6 +788,8 @@ body,
   flex-direction: column;
   flex: 1;
   padding: 8px 12px 10px;
+  overflow-wrap: break-word;
+  word-break: break-word;
 }
 
 .produk-kategori {
@@ -1916,6 +1918,24 @@ body.qv-open {
 }
 
 @media (max-width: 760px) {
+  .produk-grid,
+  .produk-grid.cols-4,
+  #daftar-produk {
+    grid-template-columns: 1fr;
+  }
+
+  .produk-body h3 {
+    font-size: 1.15rem;
+  }
+
+  .produk-harga {
+    font-size: 1.05rem;
+  }
+
+  .produk-kategori {
+    font-size: 0.7rem;
+  }
+
   .container {
     width: min(100% - 32px, var(--container));
   }
