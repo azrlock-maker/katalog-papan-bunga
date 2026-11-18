@@ -1,0 +1,32 @@
+name: Kompres gambar otomatis
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "gambar/**"
+  pull_request:
+    branches: [main]
+    paths:
+      - "gambar/**"
+
+jobs:
+  compress:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          # token agar action bisa commit hasil kompresi
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Kompres gambar
+        uses: calibreapp/image-actions@v1
+        with:
+          githubToken: ${{ secrets.GITHUB_TOKEN }}
+          # kualitas JPEG/WebP
+          jpegQuality: 82
+          pngQuality: 85
+          webpQuality: 82
+          # abaikan file yang sudah kecil
+          ignorePaths: "gambar-backup/**"
