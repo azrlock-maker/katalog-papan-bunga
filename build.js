@@ -853,15 +853,6 @@ const halamanKatalog = () => {
     <section class="section-tight">
       <div class="container">
         <div class="katalog-toolbar">
-          <div class="filter-chips" role="group" aria-label="Filter kategori">
-            <button class="chip" type="button" data-filter="semua" aria-pressed="true">Semua</button>
-            ${semuaKategori
-              .map(
-                (k) =>
-                  `<button class="chip" type="button" data-filter="${esc(k.slug)}" aria-pressed="false">${esc(k.nama)}</button>`,
-              )
-              .join("")}
-          </div>
           <div class="search-box">
             ${ikon("cari")}
             <label class="sr-only" for="cari-produk">Cari papan bunga</label>
