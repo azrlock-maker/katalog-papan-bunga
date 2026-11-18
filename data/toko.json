@@ -11,14 +11,14 @@
   "alamatKota": "Batipuh, Kabupaten Tanah Datar",
   "kota": "Padang Panjang",
   "provinsi": "Sumatera Barat",
-  "kodePos": "",
   "mapsUrl": "https://maps.app.goo.gl/NirdZbD27XBAEnAX8",
   "jam": "Buka setiap hari · jam buka menyesuaikan (hubungi kami)",
-  "jamMinggu": "",
   "buka24Jam": false,
   "pengiriman": "Pengiriman di area Padang Panjang, Batipuh, X Koto, dan sekitarnya. Jadwal antar dikonfirmasi saat pemesanan.",
   "tampilkanHarga": false,
-  "hargaMulai": 450000,
+  "hargaMulai": 200000,
+  "heroJudul": "Papan bunga yang menyampaikan pesan Anda dengan indah",
+  "heroTeks": "Pilih model papan bunga (standard, double, mahkota 2 titik, premium, exclusive) dan sesuaikan tulisan sesuai acara Anda. Melayani Padang Panjang, Batipuh, X Koto, dan sekitarnya. Pesan via WhatsApp kapan saja.",
   "area": [
     "Padang Panjang",
     "Batipuh",
@@ -26,13 +26,7 @@
     "Kabupaten Tanah Datar",
     "Batusangkar"
   ],
-  "heroJudul": "Papan bunga yang menyampaikan pesan Anda dengan indah",
-  "heroTeks": "Pilih model papan bunga (standard, double, mahkota 2 titik, premium, exclusive) dan sesuaikan tulisan sesuai acara Anda. Melayani Padang Panjang, Batipuh, X Koto, dan sekitarnya. Pesan via WhatsApp kapan saja.",
-  "googleVerification": "",
   "analytics": {
-    "google": "",
-    "plausibleDomain": "",
-    "umamiWebsiteId": "",
     "umamiSrc": "https://analytics.umami.is/script.js"
   }
 }
