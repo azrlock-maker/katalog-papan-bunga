@@ -28,7 +28,7 @@ const hashFile = (rel) => {
 };
 const CSS_HASH = hashFile("aset/style.css");
 const JS_HASH = hashFile("aset/app.js");
-const CSS_URL = `/aset/style.${CSS_HASH}.css`;
+const CSS_URL = `/aset/main.${CSS_HASH}.css`;
 const JS_URL = `/aset/app.${JS_HASH}.js`;
 
 const bacaJson = (nama) => JSON.parse(fs.readFileSync(path.join(ROOT, "data", nama), "utf8"));
@@ -1446,7 +1446,7 @@ for (const area of areaDipakai) {
 salinFolder(path.join(ROOT, "gambar"), path.join(DIST, "gambar"));
 salinFolder(path.join(ROOT, "aset"), path.join(DIST, "aset"));
 // Cache-busting: salin CSS/JS dengan nama ber-hash agar URL unik per konten
-fs.copyFileSync(path.join(ROOT, "aset", "style.css"), path.join(DIST, "aset", `style.${CSS_HASH}.css`));
+fs.copyFileSync(path.join(ROOT, "aset", "style.css"), path.join(DIST, "aset", `main.${CSS_HASH}.css`));
 fs.copyFileSync(path.join(ROOT, "aset", "app.js"), path.join(DIST, "aset", `app.${JS_HASH}.js`));
 fs.copyFileSync(path.join(ROOT, "favicon.svg"), path.join(DIST, "favicon.svg"));
 
