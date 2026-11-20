@@ -310,7 +310,7 @@ const tautanNav = (jalur, label, aktif) =>
   `<a href="${jalur}"${aktif ? ' aria-current="page"' : ""}>${esc(label)}</a>`;
 
 const header = (aktif) => `
-  <header class="site-header" style="display: block !important;">
+  <header class="site-header">
     <div class="container header-inner">
       <a class="brand" href="/" aria-label="${esc(toko.nama)} - beranda">
 ${logoToko ? `<img class="brand-logo" src="${esc(logoToko)}" alt="${esc(toko.nama)}" width="40" height="40" />` : `<span class="brand-mark">${ikon("bunga")}</span>`}
@@ -343,7 +343,7 @@ ${logoToko ? `<img class="brand-logo" src="${esc(logoToko)}" alt="${esc(toko.nam
   </header>`;
 
 const footer = () => `
-  <footer class="site-footer" id="kontak" style="display: block !important;">
+  <footer class="site-footer" id="kontak">
     <div class="container">
       <div class="footer-grid">
         <div class="footer-about">

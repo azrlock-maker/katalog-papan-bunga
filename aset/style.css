@@ -2261,3 +2261,28 @@ body.lb-open {
 
 
 /* ----------------------------- Cetak ----------------------------------- */
+
+
+/* ----------------------------- Cetak ----------------------------------- */
+@media print {
+  .site-header,
+  .site-footer,
+  .wa-float,
+  .cta-band,
+  .produk-cta,
+  .breadcrumb,
+  .quickview,
+  .lightbox,
+  .nav-toggle,
+  .tema-toggle {
+    display: none !important;
+  }
+  body {
+    background: #fff;
+    color: #000;
+  }
+  .reveal {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
