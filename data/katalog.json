@@ -36,7 +36,7 @@
     "unggulan": true,
     "gambar": "/gambar/img20261120112848.jpg",
     "fokusGambar": "center",
-    "alt": "Papan bunga duka cita dengan warna putih dan hijau yang sopan",
+    "alt": "Papan bunga duka cita",
     "ringkas": "Ungkapan belasungkawa, siap diantar cepat ke rumah duka.",
     "ukuran": "2 x 1,2 meter",
     "bahan": "Bunga artificial",
@@ -163,60 +163,6 @@
       "ulang tahun",
       "anniversary",
       "hadiah"
-    ]
-  },
-  {
-    "nama": "Papan Bunga Duka Cita Islami",
-    "slug": "papan-bunga-duka-cita-islami",
-    "kategori": "Papan Bunga Standard",
-    "harga": 750000,
-    "satuan": "per papan",
-    "unggulan": false,
-    "gambar": "/gambar/papan-bunga-duka-cita-islami.jpg",
-    "alt": "Papan bunga duka cita islami dengan tulisan innalillahi dan bunga putih",
-    "ringkas": "Papan bunga duka cita islami dengan tulisan doa dan rangkaian bunga putih yang tenang.",
-    "ukuran": "2 x 1 meter",
-    "bahan": "Bunga putih & daun hijau",
-    "pengerjaan": "1 hari kerja (bisa dipercepat sesuai ketersediaan)",
-    "termasuk": [
-      "Rangkaian bunga dua sisi",
-      "Tulisan doa custom",
-      "Kartu ucapan pengirim",
-      "Pengiriman area Padang Panjang"
-    ],
-    "tags": [
-      "duka islami",
-      "innalillahi",
-      "muslim",
-      "takziah",
-      "belasungkawa"
-    ]
-  },
-  {
-    "nama": "Papan Bunga Peresmian Kantor",
-    "slug": "papan-bunga-peresmian-kantor",
-    "kategori": "Papan Bunga Standard",
-    "harga": 1350000,
-    "satuan": "per papan",
-    "unggulan": false,
-    "gambar": "/gambar/papan-bunga-peresmian-kantor.jpg",
-    "alt": "Papan bunga peresmian kantor dengan desain korporat elegan",
-    "ringkas": "Papan bunga peresmian kantor dan gedung dengan desain korporat yang elegan dan tahan lama.",
-    "ukuran": "2,5 x 1,2 meter",
-    "bahan": "Bunga premium & ornamen korporat",
-    "pengerjaan": "2 hari kerja",
-    "termasuk": [
-      "Rangkaian bunga dua sisi",
-      "Tulisan nama perusahaan & ucapan",
-      "Penyesuaian warna logo",
-      "Pengiriman dan penempatan"
-    ],
-    "tags": [
-      "peresmian",
-      "kantor",
-      "gedung",
-      "korporat",
-      "resmikan"
     ]
   }
 ]
