@@ -461,7 +461,7 @@ ${isi}
 const kartuProduk = (p) => `
   <article class="produk-card reveal">
     <div class="produk-media">
-      <img src="${esc(p.gambar)}" alt="${esc(p.alt || p.nama)}" width="1200" height="900" loading="lazy" />
+      <img src="${esc(p.gambar)}" alt="${esc(p.alt || p.nama)}" width="1200" height="900" loading="lazy" style="object-position: ${esc(p.fokusGambar || 'center')};" />
       ${p.badge ? `<span class="badge${p.badge === "Terlaris" || p.badge === "Premium" ? " badge-gold" : ""}">${esc(p.badge)}</span>` : ""}
     </div>
     <div class="produk-body">
@@ -484,7 +484,7 @@ const kartuProduk = (p) => `
 const kartuKategori = (k) => `
   <a class="kategori-card reveal" href="/katalog/${esc(k.slug)}/">
     <span class="kategori-icon">${ikon(petaIkonKategori[k.ikon] || "bunga")}</span>
-    <img src="${esc(k.gambar)}" alt="${esc(k.nama)}" width="1200" height="900" loading="lazy" />
+    <img src="${esc(k.gambar)}" alt="${esc(k.nama)}" width="1200" height="900" loading="lazy" style="object-position: ${esc(k.fokusGambar || 'center')};" />
     <div class="kategori-body">
       <h3>${esc(k.nama)}</h3>
       <p>${esc(k.deskripsi)}</p>

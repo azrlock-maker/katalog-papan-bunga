@@ -61,6 +61,21 @@ content:
         type: image
         required: true
         description: "Rasio 4:3 (mis. 1200 x 900 px). Crop manual. Maks 2 MB; kompres dulu jika lebih besar. Format: JPG, PNG, WebP."
+      - name: fokusGambar
+        label: Fokus tampilan foto
+        type: select
+        options:
+          values:
+            - center
+            - top
+            - bottom
+            - left
+            - right
+            - top left
+            - top right
+            - bottom left
+            - bottom right
+        description: "Pilih bagian foto yang diprioritaskan saat gambar dipotong (cover). Default: center."
       - name: gambarOg
         label: Foto untuk media sosial (opsional)
         type: image
@@ -131,6 +146,21 @@ content:
         label: Gambar kategori
         type: image
         description: "Rasio 4:3 (mis. 1200 x 900 px). Crop manual. Maks 2 MB. Format: JPG, PNG, WebP."
+      - name: fokusGambar
+        label: Fokus tampilan foto
+        type: select
+        options:
+          values:
+            - center
+            - top
+            - bottom
+            - left
+            - right
+            - top left
+            - top right
+            - bottom left
+            - bottom right
+        description: "Pilih bagian foto yang diprioritaskan saat gambar dipotong (cover). Default: center."
 
   - name: testimoni
     label: Testimoni Pelanggan
