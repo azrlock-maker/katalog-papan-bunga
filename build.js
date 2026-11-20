@@ -29,6 +29,20 @@ try {
   testimoni = [];
 }
 
+let galeri = [];
+try {
+  const raw = bacaJson("galeri.json");
+  galeri = Array.isArray(raw) ? raw : [];
+  galeri = galeri.map((g) => ({
+    judul: g.judul || g.nama || "Orderan papan bunga",
+    gambar: Array.isArray(g.gambar) ? g.gambar : g.gambar ? [g.gambar] : [],
+    tanggal: g.tanggal || "",
+    tags: Array.isArray(g.tags) ? g.tags : [],
+  })).filter((g) => g.gambar.length > 0);
+} catch (e) {
+  galeri = [];
+}
+
 /* ----------------------------- Utilitas -------------------------------- */
 
 const esc = (nilai) =>
@@ -58,6 +72,23 @@ const logoToko = toko.logo
     ? toko.logo
     : "/" + toko.logo
   : "";
+
+const webpJikaAda = (src) => {
+  if (!src || /^https?:\/\//.test(src)) return null;
+  const webp = src.replace(/\.(jpe?g|png)$/i, ".webp");
+  if (webp === src) return null;
+  const abs = path.join(ROOT, webp.replace(/^\//, ""));
+  return fs.existsSync(abs) ? webp : null;
+};
+
+const imgWebp = (src, alt, w, h, loading, extraStyle, extraAttrs) => {
+  const webp = webpJikaAda(src);
+  const attrs = 'alt="' + esc(alt) + '" width="' + w + '" height="' + h + '"' + (loading ? ' loading="' + loading + '"' : "") + (extraStyle ? ' style="' + extraStyle + '"' : "") + (extraAttrs ? ' ' + extraAttrs : "");
+  if (webp) {
+    return '<picture><source srcset="' + esc(webp) + '" type="image/webp"><img src="' + esc(src) + '" ' + attrs + ' /></picture>';
+  }
+  return '<img src="' + esc(src) + '" ' + attrs + ' />';
+};
 
 const skripAnalytics = () => {
   const a = (toko && toko.analytics) || {};
@@ -268,6 +299,7 @@ ${logoToko ? `<img class="brand-logo" src="${esc(logoToko)}" alt="${esc(toko.nam
       <nav class="site-nav" id="navigasi" aria-label="Navigasi utama">
         ${tautanNav("/", "Beranda", aktif === "beranda")}
         ${tautanNav("/katalog/", "Katalog", aktif === "katalog")}
+        ${tautanNav("/galeri/", "Galeri", aktif === "galeri")}
         ${tautanNav("/#tentang", "Tentang", false)}
         ${tautanNav("/#kontak", "Kontak", false)}
       </nav>
@@ -307,6 +339,7 @@ const footer = () => `
           <ul class="footer-links">
             <li><a href="/">Beranda</a></li>
             <li><a href="/katalog/">Katalog papan bunga</a></li>
+            <li><a href="/galeri/">Galeri orderan</a></li>
             ${areaDipakai
               .map((a) => `<li><a href="/area/${slugArea(a)}/">Papan bunga ${esc(a)}</a></li>`)
               .join("")}
@@ -461,7 +494,7 @@ ${isi}
 const kartuProduk = (p) => `
   <article class="produk-card reveal">
     <div class="produk-media">
-      <img src="${esc(p.gambar)}" alt="${esc(p.alt || p.nama)}" width="1200" height="900" loading="lazy" style="object-position: ${esc(p.fokusGambar || 'center')};" />
+      ${imgWebp(p.gambar, p.alt || p.nama, "1200", "900", "lazy", "object-position: " + (p.fokusGambar || "center") + ";")}
       ${p.badge ? `<span class="badge${p.badge === "Terlaris" || p.badge === "Premium" ? " badge-gold" : ""}">${esc(p.badge)}</span>` : ""}
     </div>
     <div class="produk-body">
@@ -484,7 +517,7 @@ const kartuProduk = (p) => `
 const kartuKategori = (k) => `
   <a class="kategori-card reveal" href="/katalog/${esc(k.slug)}/">
     <span class="kategori-icon">${ikon(petaIkonKategori[k.ikon] || "bunga")}</span>
-    <img src="${esc(k.gambar)}" alt="${esc(k.nama)}" width="1200" height="900" loading="lazy" style="object-position: ${esc(k.fokusGambar || 'center')};" />
+    ${imgWebp(k.gambar, k.nama, "1200", "900", "lazy", "object-position: " + (k.fokusGambar || "center") + ";")}
     <div class="kategori-body">
       <h3>${esc(k.nama)}</h3>
       <p>${esc(k.deskripsi)}</p>
@@ -626,7 +659,7 @@ const beranda = () => {
           </ul>
         </div>
         <div class="hero-media">
-          <img src="/gambar/hero.jpg" alt="Papan bunga elegan rangkaian ${esc(toko.nama)}" width="1200" height="1050" fetchpriority="high" />
+          ${imgWebp("/gambar/hero.jpg", "Papan bunga elegan rangkaian " + toko.nama, "1200", "1050", null, null, 'fetchpriority="high"')}
           <span class="hero-badge">Custom Design</span>
           <div class="hero-card">
             ${
@@ -707,7 +740,7 @@ const beranda = () => {
     <section class="section section-cream" id="tentang">
       <div class="container tentang-grid">
         <div class="tentang-media reveal">
-          <img src="/gambar/papan-bunga-grand-opening.jpg" alt="Papan bunga grand opening buatan ${esc(toko.nama)}" width="1200" height="900" loading="lazy" />
+          ${imgWebp("/gambar/papan-bunga-grand-opening.jpg", "Papan bunga grand opening buatan " + toko.nama, "1200", "900", "lazy", null)}
           <div class="tentang-note">
             <strong>${jumlahKategori} kategori</strong>
             ${produk.length} pilihan papan bunga siap dipesan
@@ -1010,6 +1043,78 @@ const halamanKategori = (k) => {
   });
 };
 
+/* ----------------------------- Halaman galeri -------------------------- */
+
+const halamanGaleri = () => {
+  const semuaGambar = galeri.flatMap((g) =>
+    g.gambar.map((src) => ({ src, judul: g.judul, tanggal: g.tanggal, tags: g.tags })),
+  );
+
+  const isi = `
+    <section class="page-hero">
+      <div class="container">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="/">Beranda</a> ${ikon("chevron")}
+          <span>Galeri</span>
+        </nav>
+        <span class="eyebrow">Galeri Orderan</span>
+        <h1>Galeri papan bunga yang pernah kami buat</h1>
+        <p>Kumpulan foto orderan papan bunga asli dari ${esc(toko.nama)}. Klik foto untuk memperbesar.</p>
+      </div>
+    </section>
+
+    <section class="section-tight">
+      <div class="container">
+        ${
+          semuaGambar.length === 0
+            ? `<div class="empty-state" style="display:block;">Belum ada foto di galeri. Tambahkan via CMS (menu Galeri Orderan).</div>`
+            : `<div class="galeri-grid">
+                ${semuaGambar
+                  .map(
+                    (item, i) => `
+                  <figure class="galeri-item reveal" data-lightbox="${i}">
+                    ${imgWebp(item.src, item.judul, "600", "600", "lazy", "object-fit: cover;")}
+                    <figcaption>${esc(item.judul)}${item.tanggal ? ` · ${esc(item.tanggal)}` : ""}</figcaption>
+                  </figure>`,
+                  )
+                  .join("")}
+              </div>`
+        }
+      </div>
+    </section>
+
+    <div class="lightbox" id="lightbox" aria-hidden="true" role="dialog" aria-modal="true">
+      <div class="lightbox-backdrop" data-lb-close></div>
+      <button class="lightbox-close" type="button" data-lb-close aria-label="Tutup">×</button>
+      <button class="lightbox-prev" type="button" data-lb-prev aria-label="Sebelumnya">‹</button>
+      <button class="lightbox-next" type="button" data-lb-next aria-label="Berikutnya">›</button>
+      <figure class="lightbox-figure">
+        <img id="lb-img" src="" alt="" />
+        <figcaption id="lb-caption"></figcaption>
+      </figure>
+    </div>
+
+    <script>
+      window.GALERI = ${JSON.stringify(semuaGambar.map((i) => ({ src: i.src, judul: i.judul })))};
+    </script>`;
+
+  return layout({
+    judul: `Galeri Papan Bunga ${toko.kota} | ${toko.nama}`,
+    deskripsi: potongTeks(
+      `Galeri foto orderan papan bunga asli dari ${toko.nama} di ${toko.kota}. Berbagai desain ucapan, duka cita, grand opening, dan custom.`,
+    ),
+    jalur: "/galeri/",
+    isi,
+    aktif: "galeri",
+    skema: [
+      skemaRemah([
+        { nama: "Beranda", jalur: "/" },
+        { nama: "Galeri", jalur: "/galeri/" },
+      ]),
+    ],
+  });
+};
+
 /* ----------------------------- Halaman produk -------------------------- */
 
 const halamanProduk = (p) => {
@@ -1037,7 +1142,7 @@ const halamanProduk = (p) => {
 
         <div class="produk-detail">
           <div class="produk-foto reveal">
-            <img src="${esc(p.gambar)}" alt="${esc(p.alt || p.nama)}" width="1200" height="900" fetchpriority="high" />
+            ${imgWebp(p.gambar, p.alt || p.nama, "1200", "900", null, null, 'fetchpriority="high"')}
             ${p.badge ? `<span class="badge badge-gold">${esc(p.badge)}</span>` : ""}
           </div>
 
@@ -1310,6 +1415,7 @@ for (const p of produk) {
   tulis(`produk/${p.slug}/index.html`, halamanProduk(p));
 }
 tulis("404.html", halaman404());
+tulis("galeri/index.html", halamanGaleri());
 for (const area of areaDipakai) {
   tulis(`area/${slugArea(area)}/index.html`, halamanArea(area));
 }
@@ -1321,6 +1427,7 @@ fs.copyFileSync(path.join(ROOT, "favicon.svg"), path.join(DIST, "favicon.svg"));
 const urlSitemap = [
   { jalur: "/", prioritas: "1.0" },
   { jalur: "/katalog/", prioritas: "0.9" },
+  { jalur: "/galeri/", prioritas: "0.8" },
   ...semuaKategori.map((k) => ({ jalur: `/katalog/${k.slug}/`, prioritas: "0.85" })),
   ...produk.map((p) => ({ jalur: `/produk/${p.slug}/`, prioritas: "0.8" })),
   ...areaDipakai.map((a) => ({ jalur: `/area/${slugArea(a)}/`, prioritas: "0.7" })),

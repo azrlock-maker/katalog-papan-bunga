@@ -162,6 +162,36 @@ content:
             - bottom right
         description: "Pilih bagian foto yang diprioritaskan saat gambar dipotong (cover). Default: center."
 
+  - name: galeri
+    label: Galeri Orderan
+    type: collection
+    path: data/galeri.json
+    format: json
+    list: true
+    fields:
+      - name: judul
+        label: Judul / keterangan
+        type: string
+        required: true
+        description: "Contoh: Papan bunga ucapan selamat - PT Maju Jaya."
+      - name: gambar
+        label: Foto orderan
+        type: image
+        required: true
+        options:
+          multiple: true
+          rename: safe
+        description: "Pilih banyak foto sekaligus. Rasio bebas; kompres otomatis. Format: JPG, PNG, WebP."
+      - name: tanggal
+        label: Tanggal order
+        type: date
+        description: "Opsional, untuk urutan kronologis."
+      - name: tags
+        label: Tag (opsional)
+        type: string
+        list: true
+        description: "Contoh: ucapan selamat, grand opening."
+
   - name: testimoni
     label: Testimoni Pelanggan
     type: file

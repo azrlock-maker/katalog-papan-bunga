@@ -240,6 +240,50 @@
     }
   }
 
+  /* ----------------------------- Lightbox galeri ------------------------ */
+  var lb = document.getElementById("lightbox");
+  if (lb) {
+    var lbImg = document.getElementById("lb-img");
+    var lbCap = document.getElementById("lb-caption");
+    var lbItems = Array.prototype.slice.call(document.querySelectorAll(".galeri-item"));
+    var lbIndex = 0;
+    var galeriData = window.GALERI || [];
+
+    function bukaLb(i) {
+      lbIndex = (i + lbItems.length) % lbItems.length;
+      var item = galeriData[lbIndex] || {};
+      if (lbImg) { lbImg.src = item.src || ""; lbImg.alt = item.judul || ""; }
+      if (lbCap) lbCap.textContent = item.judul || "";
+      lb.setAttribute("aria-hidden", "false");
+      document.body.classList.add("lb-open");
+    }
+    function tutupLb() {
+      lb.setAttribute("aria-hidden", "true");
+      document.body.classList.remove("lb-open");
+      if (lbImg) lbImg.src = "";
+    }
+    function navLb(dir) {
+      bukaLb(lbIndex + dir);
+    }
+
+    lbItems.forEach(function (el, i) {
+      el.addEventListener("click", function () { bukaLb(i); });
+    });
+    lb.querySelectorAll("[data-lb-close]").forEach(function (el) {
+      el.addEventListener("click", tutupLb);
+    });
+    var prev = lb.querySelector("[data-lb-prev]");
+    var next = lb.querySelector("[data-lb-next]");
+    if (prev) prev.addEventListener("click", function () { navLb(-1); });
+    if (next) next.addEventListener("click", function () { navLb(1); });
+    document.addEventListener("keydown", function (e) {
+      if (lb.getAttribute("aria-hidden") === "true") return;
+      if (e.key === "Escape") tutupLb();
+      if (e.key === "ArrowLeft") navLb(-1);
+      if (e.key === "ArrowRight") navLb(1);
+    });
+  }
+
   var tahun = document.getElementById("tahun");
   if (tahun) tahun.textContent = new Date().getFullYear();
 })();
