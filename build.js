@@ -1450,6 +1450,10 @@ fs.copyFileSync(path.join(ROOT, "aset", "style.css"), path.join(DIST, "aset", `m
 fs.copyFileSync(path.join(ROOT, "aset", "app.js"), path.join(DIST, "aset", `app.${JS_HASH}.js`));
 fs.copyFileSync(path.join(ROOT, "favicon.svg"), path.join(DIST, "favicon.svg"));
 
+// Header cache-control: cegah cache stale di CDN/browser
+const headersIsi = `/*\n  Cache-Control: no-cache, no-store, must-revalidate\n\n/aset/main.*.css\n  Cache-Control: public, max-age=31536000, immutable\n\n/aset/app.*.js\n  Cache-Control: public, max-age=31536000, immutable\n`;
+tulis("_headers", headersIsi);
+
 const urlSitemap = [
   { jalur: "/", prioritas: "1.0" },
   { jalur: "/katalog/", prioritas: "0.9" },
