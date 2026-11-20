@@ -821,9 +821,32 @@ const beranda = () => {
             )
             .join("")}
         </div>
+        ${
+          toko.linkUlasanGoogle
+            ? `<div style="text-align:center;margin-top:28px;"><a class="btn btn-outline" href="${esc(toko.linkUlasanGoogle)}" target="_blank" rel="noopener">${ikon("star")} Tulis ulasan di Google</a></div>`
+            : ""
+        }
       </div>
     </section>`
-        : ""
+        : `
+    <section class="section section-cream" id="testimoni">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">Kata pelanggan</span>
+          <h2>Dipercaya untuk momen penting</h2>
+          <p>Ulasan pelanggan akan tampil di sini setelah Anda menerima review dari Google Business Profile.</p>
+        </div>
+        <div class="empty-state" style="display:block;">
+          <strong>Belum ada ulasan</strong>
+          Jadilah yang pertama memberikan ulasan untuk AKIO FLORIST.
+        </div>
+        ${
+          toko.linkUlasanGoogle
+            ? `<div style="text-align:center;margin-top:20px;"><a class="btn btn-primary" href="${esc(toko.linkUlasanGoogle)}" target="_blank" rel="noopener">${ikon("star")} Tulis ulasan di Google</a></div>`
+            : ""
+        }
+      </div>
+    </section>`
     }
 
     <section class="section">

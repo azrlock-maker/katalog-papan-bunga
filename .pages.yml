@@ -248,6 +248,10 @@ content:
       - name: instagram
         label: Alamat Instagram
         type: string
+      - name: linkUlasanGoogle
+        label: Tautan ulasan Google (opsional)
+        type: string
+        description: "Link 'Minta ulasan' dari Google Business Profile. Pelanggan klik tombol 'Tulis ulasan di Google' di website."
       - name: alamat
         label: Alamat lengkap (jalan)
         type: string
