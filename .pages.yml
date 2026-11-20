@@ -76,10 +76,6 @@ content:
             - bottom left
             - bottom right
         description: "Pilih bagian foto yang diprioritaskan saat gambar dipotong (cover). Default: center."
-      - name: gambarOg
-        label: Foto untuk media sosial (opsional)
-        type: image
-        description: "Ukuran ideal 1200 x 630 px. Crop manual sebelum upload. Jika kosong, foto produk dipakai."
       - name: alt
         label: Keterangan foto
         type: string
@@ -88,11 +84,6 @@ content:
         label: Deskripsi singkat
         type: text
         description: "1-2 kalimat, tampil di kartu katalog dan hasil pencarian Google."
-      - name: deskripsi
-        label: Deskripsi lengkap
-        type: text
-        list: true
-        description: "Satu paragraf per baris. Isi 2-3 paragraf."
       - name: ukuran
         label: Ukuran
         type: string

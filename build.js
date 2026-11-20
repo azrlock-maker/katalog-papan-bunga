@@ -245,7 +245,6 @@ produk = produk
     badge: p.badge || "",
     unggulan: Boolean(p.unggulan),
     tags: Array.isArray(p.tags) ? p.tags : [],
-    deskripsi: Array.isArray(p.deskripsi) ? p.deskripsi : [String(p.deskripsi || "")].filter(Boolean),
     termasuk: Array.isArray(p.termasuk) ? p.termasuk : [],
     kategori: p.kategori || "Lainnya",
   }));
@@ -1284,11 +1283,7 @@ const halamanProduk = (p) => {
         </div>
 
         <div class="produk-isi">
-          <div class="prose">
-            <h2>Tentang ${esc(p.nama)}</h2>
-            ${p.deskripsi.map((paragraf) => `<p>${esc(paragraf)}</p>`).join("")}
-          </div>
-          <aside class="termasuk-box">
+          <aside class="termasuk-box" style="grid-column: 1 / -1; max-width: 640px;">
             <h2>Yang Anda dapatkan</h2>
             <ul>
               ${
@@ -1317,13 +1312,10 @@ const halamanProduk = (p) => {
 
   return layout({
     judul: `${p.nama} | ${toko.nama} ${toko.kota}`,
-    deskripsi: potongTeks(p.ringkas || p.deskripsi[0] || p.nama),
+    deskripsi: potongTeks(p.ringkas || p.nama),
     jalur: `/produk/${p.slug}/`,
     isi,
     aktif: "katalog",
-    gambarOg: p.gambarOg || p.gambar,
-    lebarOg: 1200,
-    tinggiOg: p.gambarOg ? 630 : 900,
     tipeOg: "product",
     skema: [
       skemaRemah([
@@ -1336,7 +1328,7 @@ const halamanProduk = (p) => {
         "@type": "Product",
         name: p.nama,
         image: [alamatAbsolut(p.gambar)],
-        description: p.deskripsi.join(" ") || p.ringkas,
+        description: p.ringkas || p.nama,
         sku: p.slug,
         category: p.kategori,
         brand: { "@type": "Brand", name: toko.nama },
