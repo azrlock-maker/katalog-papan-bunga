@@ -2246,6 +2246,72 @@ body.lb-open {
 /* ----------------------------- Cetak ----------------------------------- */
 
 
+/* ----------------------------- Ulasan form ------------------------------ */
+.ulasan-form-wrap {
+  max-width: 640px;
+  margin: 0 auto;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 26px 26px 22px;
+}
+
+.ulasan-form-wrap h3 {
+  margin: 0 0 4px;
+  font-size: 1.2rem;
+  color: var(--heading);
+}
+
+.ulasan-sub {
+  color: var(--ink-soft);
+  font-size: 0.9rem;
+  margin: 0 0 16px;
+}
+
+.ulasan-form label {
+  display: block;
+  margin-bottom: 12px;
+  font-size: 0.9rem;
+  color: var(--text);
+}
+
+.ulasan-form input,
+.ulasan-form textarea,
+.ulasan-form select {
+  width: 100%;
+  margin-top: 4px;
+  padding: 10px 12px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--bg);
+  color: var(--text);
+  font: inherit;
+}
+
+.ulasan-form button {
+  width: 100%;
+  margin-top: 6px;
+}
+
+.ulasan-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.ulasan-alt {
+  text-align: center;
+  font-size: 0.85rem;
+  color: var(--ink-soft);
+  margin-top: 14px;
+}
+
+@media (max-width: 600px) {
+  .ulasan-row {
+    grid-template-columns: 1fr;
+  }
+}
+
 /* ----------------------------- Cetak ----------------------------------- */
 @media print {
   .site-header,
