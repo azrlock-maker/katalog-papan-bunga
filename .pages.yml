@@ -165,9 +165,8 @@ content:
   - name: galeri
     label: Galeri Orderan
     type: collection
-    path: data/galeri.json
+    path: data/galeri
     format: json
-    list: true
     fields:
       - name: judul
         label: Judul / keterangan

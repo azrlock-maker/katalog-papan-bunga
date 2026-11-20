@@ -31,14 +31,23 @@ try {
 
 let galeri = [];
 try {
-  const raw = bacaJson("galeri.json");
-  galeri = Array.isArray(raw) ? raw : [];
-  galeri = galeri.map((g) => ({
-    judul: g.judul || g.nama || "Orderan papan bunga",
-    gambar: Array.isArray(g.gambar) ? g.gambar : g.gambar ? [g.gambar] : [],
-    tanggal: g.tanggal || "",
-    tags: Array.isArray(g.tags) ? g.tags : [],
-  })).filter((g) => g.gambar.length > 0);
+  const dir = path.join(ROOT, "data", "galeri");
+  if (fs.existsSync(dir)) {
+    const files = fs.readdirSync(dir).filter((f) => f.endsWith(".json"));
+    galeri = files.map((f) => {
+      try {
+        const g = JSON.parse(fs.readFileSync(path.join(dir, f), "utf8"));
+        return {
+          judul: g.judul || g.nama || "Orderan papan bunga",
+          gambar: Array.isArray(g.gambar) ? g.gambar : g.gambar ? [g.gambar] : [],
+          tanggal: g.tanggal || "",
+          tags: Array.isArray(g.tags) ? g.tags : [],
+        };
+      } catch (e) {
+        return null;
+      }
+    }).filter((g) => g && g.gambar.length > 0);
+  }
 } catch (e) {
   galeri = [];
 }
