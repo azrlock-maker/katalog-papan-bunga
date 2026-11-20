@@ -1665,6 +1665,25 @@ body.lb-open {
   line-height: 1.4;
 }
 
+/* Tautan WhatsApp di dalam teks */
+.tautan-wa {
+  color: var(--link);
+  font-weight: 500;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 2px;
+}
+
+.tautan-wa:hover,
+.tautan-wa:focus-visible {
+  color: var(--brand-strong);
+  text-decoration-thickness: 2px;
+}
+
+.harga-box .note .tautan-wa {
+  color: var(--brand-strong);
+}
+
 .produk-cta {
   display: grid;
   gap: 10px;

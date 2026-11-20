@@ -153,6 +153,17 @@ const namaInstagram = (() => {
 const tautanWa = (pesan) =>
   "https://wa.me/" + nomorWa + "?text=" + encodeURIComponent(pesan || toko.whatsappPesan);
 
+// Teks yang seluruhnya bisa diklik untuk membuka WhatsApp.
+const waTeks = (teks, pesan) =>
+  `<a class="tautan-wa" href="${tautanWa(pesan)}" target="_blank" rel="noopener">${esc(teks)}</a>`;
+
+// Kata "WhatsApp" di dalam kalimat dibuat sebagai tautan.
+const waKata = (teks, pesan) =>
+  esc(teks).replace(
+    /WhatsApp/g,
+    `<a class="tautan-wa" href="${tautanWa(pesan)}" target="_blank" rel="noopener">WhatsApp</a>`,
+  );
+
 const potongTeks = (teks, maksimal = 157) => {
   const bersih = String(teks).replace(/\s+/g, " ").trim();
   if (bersih.length <= maksimal) return bersih;
@@ -501,7 +512,7 @@ ${isi}
     <div class="quickview-panel">
       <button class="quickview-close" type="button" data-qv-close aria-label="Tutup">×</button>
       <h2 id="qv-nama">Pesan Cepat</h2>
-      <p class="qv-sub">Isi detail pesanan, kami kirim ke WhatsApp untuk konfirmasi harga &amp; jadwal.</p>
+      <p class="qv-sub">${waKata("Isi detail pesanan, kami kirim ke WhatsApp untuk konfirmasi harga & jadwal.")}</p>
       <form id="qv-form">
         <label>Nama pemesan<input type="text" name="nama" required placeholder="Nama Anda" /></label>
         <label>Nomor WhatsApp<input type="tel" name="wa" required placeholder="08xxxxxxxxxx" /></label>
@@ -673,7 +684,7 @@ const beranda = () => {
         <div>
           <span class="eyebrow">Papan Bunga &middot; ${esc(toko.kota)}</span>
           <h1>${esc(toko.heroJudul)}</h1>
-          <p class="lead">${esc(toko.heroTeks)}</p>
+          <p class="lead">${waKata(toko.heroTeks)}</p>
           <div class="hero-actions">
             <a class="btn btn-primary" href="/katalog/">Lihat katalog ${ikon("panah")}</a>
             <a class="btn btn-outline" href="${tautanWa()}" target="_blank" rel="noopener">${ikon("wa")} Pesan via WhatsApp</a>
@@ -696,7 +707,7 @@ const beranda = () => {
             <small>Termasuk konsultasi desain</small>`
                 : `<span>Konsultasi desain</span>
             <strong>Gratis</strong>
-            <small>Lewat WhatsApp, kapan saja</small>`
+            <small>${waTeks("Lewat WhatsApp, kapan saja")}</small>`
             }
           </div>
         </div>
@@ -911,7 +922,7 @@ const beranda = () => {
           </div>
           <div class="proses-item reveal">
             <h3>Konfirmasi detail</h3>
-            <p>Kirim tulisan, alamat, dan tanggal lewat WhatsApp. Kami cek stok dan biaya pengiriman.</p>
+            <p>${waKata("Kirim tulisan, alamat, dan tanggal lewat WhatsApp. Kami cek stok dan biaya pengiriman.")}</p>
           </div>
           <div class="proses-item reveal">
             <h3>Kami antar</h3>
@@ -926,7 +937,7 @@ const beranda = () => {
         <div class="section-head">
           <span class="eyebrow">FAQ</span>
           <h2>Pertanyaan yang sering diajukan</h2>
-          <p>Belum menemukan jawabannya? Hubungi kami lewat WhatsApp, kami siap membantu.</p>
+          <p>Belum menemukan jawabannya? ${waKata("Hubungi kami lewat WhatsApp", "")}, kami siap membantu.</p>
         </div>
         <div class="faq-list">
           ${faq
@@ -934,7 +945,7 @@ const beranda = () => {
               (f) => `
           <details class="faq-item">
             <summary>${esc(f.tanya)}</summary>
-            <div class="faq-answer"><p>${esc(f.jawab)}</p></div>
+            <div class="faq-answer"><p>${waKata(f.jawab)}</p></div>
           </details>`,
             )
             .join("")}
@@ -977,7 +988,7 @@ const halamanKatalog = () => {
         </nav>
         <span class="eyebrow">Katalog</span>
         <h1>Papan bunga untuk setiap acara</h1>
-        <p>${produk.length} pilihan papan bunga untuk ucapan selamat, duka cita, grand opening, pernikahan, wisuda, serta pesanan custom. Konsultasikan kebutuhan Anda lewat WhatsApp.</p>
+        <p>${produk.length} pilihan papan bunga untuk ucapan selamat, duka cita, grand opening, pernikahan, wisuda, serta pesanan custom. ${waKata("Konsultasikan kebutuhan Anda lewat WhatsApp", "")}.</p>
       </div>
     </section>
 
@@ -1261,7 +1272,7 @@ const halamanProduk = (p) => {
               <span class="note">${
                 tampilHarga
                   ? "Belum termasuk ongkir, dikonfirmasi saat pemesanan"
-                  : "Hubungi WhatsApp untuk penawaran dan ketersediaan"
+                  : waTeks("Hubungi WhatsApp untuk penawaran dan ketersediaan", pesanWa)
               }</span>
             </div>
 
