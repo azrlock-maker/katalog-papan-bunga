@@ -1531,7 +1531,7 @@ fs.copyFileSync(path.join(ROOT, "aset", "app.js"), path.join(DIST, "aset", `app.
 fs.copyFileSync(path.join(ROOT, "favicon.svg"), path.join(DIST, "favicon.svg"));
 // Verifikasi Google Search Console (metode file HTML): salin berkas google*.html ke akar dist
 for (const namaBerkas of fs.readdirSync(ROOT)) {
-  if (/^google[a-z0-9]+\.html$/i.test(namaBerkas)) {
+  if (/^google[a-z0-9_-]+\.html$/i.test(namaBerkas)) {
     fs.copyFileSync(path.join(ROOT, namaBerkas), path.join(DIST, namaBerkas));
   }
 }
