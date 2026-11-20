@@ -17,6 +17,20 @@ const path = require("path");
 const ROOT = __dirname;
 const DIST = path.join(ROOT, "dist");
 
+const crypto = require("crypto");
+const hashFile = (rel) => {
+  try {
+    const buf = fs.readFileSync(path.join(ROOT, rel));
+    return crypto.createHash("sha256").update(buf).digest("hex").slice(0, 10);
+  } catch (e) {
+    return String(Date.now());
+  }
+};
+const CSS_HASH = hashFile("aset/style.css");
+const JS_HASH = hashFile("aset/app.js");
+const CSS_URL = `/aset/style.${CSS_HASH}.css`;
+const JS_URL = `/aset/app.${JS_HASH}.js`;
+
 const bacaJson = (nama) => JSON.parse(fs.readFileSync(path.join(ROOT, "data", nama), "utf8"));
 const toko = bacaJson("toko.json");
 let kategori = bacaJson("kategori.json");
@@ -460,7 +474,7 @@ const layout = ({
   <meta name="twitter:image" content="${alamatAbsolut(gambarOg)}" />
 
   <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-  <link rel="stylesheet" href="/aset/style.css?v=${Date.now()}" />
+  <link rel="stylesheet" href="${CSS_URL}" />
   <script>document.documentElement.classList.remove("no-js");document.documentElement.classList.add("js");</script>
   ${skema
     .map(
@@ -494,7 +508,7 @@ ${isi}
       </form>
     </div>
   </div>
-  <script src="/aset/app.js?v=${Date.now()}" defer></script>
+  <script src="${JS_URL}" defer></script>
 </body>
 </html>
 `;
@@ -1431,6 +1445,9 @@ for (const area of areaDipakai) {
 
 salinFolder(path.join(ROOT, "gambar"), path.join(DIST, "gambar"));
 salinFolder(path.join(ROOT, "aset"), path.join(DIST, "aset"));
+// Cache-busting: salin CSS/JS dengan nama ber-hash agar URL unik per konten
+fs.copyFileSync(path.join(ROOT, "aset", "style.css"), path.join(DIST, "aset", `style.${CSS_HASH}.css`));
+fs.copyFileSync(path.join(ROOT, "aset", "app.js"), path.join(DIST, "aset", `app.${JS_HASH}.js`));
 fs.copyFileSync(path.join(ROOT, "favicon.svg"), path.join(DIST, "favicon.svg"));
 
 const urlSitemap = [
