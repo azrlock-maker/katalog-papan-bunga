@@ -643,15 +643,6 @@ const skemaToko = {
       : {}),
   sameAs: [toko.instagram].filter(Boolean),
   ...(toko.mapsUrl ? { hasMap: toko.mapsUrl } : {}),
-  hasOfferCatalog: {
-    "@type": "OfferCatalog",
-    name: "Katalog papan bunga",
-    itemListElement: produk.map((p) => ({
-      "@type": "Offer",
-      itemOffered: { "@type": "Product", name: p.nama, url: alamatAbsolut(`/produk/${p.slug}/`) },
-      ...(tampilHarga ? { price: Number(p.harga), priceCurrency: "IDR" } : {}),
-    })),
-  },
 };
 
 const skemaFaq = {
@@ -1335,38 +1326,6 @@ const halamanProduk = (p) => {
         { nama: "Katalog", jalur: "/katalog/" },
         { nama: p.nama, jalur: `/produk/${p.slug}/` },
       ]),
-      {
-        "@context": "https://schema.org",
-        "@type": "Product",
-        name: p.nama,
-        image: [alamatAbsolut(p.gambar)],
-        description: p.ringkas || p.nama,
-        sku: p.slug,
-        category: p.kategori,
-        brand: { "@type": "Brand", name: toko.nama },
-        ...(tampilHarga
-          ? {
-              offers: {
-                "@type": "Offer",
-                url: alamatAbsolut(`/produk/${p.slug}/`),
-                priceCurrency: "IDR",
-                price: Number(p.harga),
-                availability: "https://schema.org/InStock",
-                itemCondition: "https://schema.org/NewCondition",
-                seller: { "@type": "Organization", name: toko.nama, url: alamatAbsolut("/") },
-              },
-            }
-          : {}),
-      },
-      {
-        "@context": "https://schema.org",
-        "@type": "BreadcrumbList",
-        itemListElement: [
-          { "@type": "ListItem", position: 1, name: "Beranda", item: alamatAbsolut("/") },
-          { "@type": "ListItem", position: 2, name: "Katalog", item: alamatAbsolut("/katalog/") },
-          { "@type": "ListItem", position: 3, name: p.nama, item: alamatAbsolut(`/produk/${p.slug}/`) },
-        ],
-      },
     ],
   });
 };
