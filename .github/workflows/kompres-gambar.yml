@@ -1,4 +1,4 @@
-name: Kompres gambar otomatis
+name: Kompres & konversi gambar ke WebP otomatis
 
 on:
   push:
@@ -14,7 +14,7 @@ permissions:
   contents: write
 
 jobs:
-  compress:
+  optimize:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -23,11 +23,39 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           fetch-depth: 0
 
-      - name: Kompres gambar
-        uses: calibreapp/image-actions@v1
-        with:
-          githubToken: ${{ secrets.GITHUB_TOKEN }}
-          jpegQuality: 82
-          pngQuality: 85
-          webpQuality: 82
-          ignorePaths: "gambar-backup/**"
+      - name: Kompres & konversi ke WebP (ImageMagick)
+        run: |
+          set -e
+          cd gambar
+          for f in *.jpg *.jpeg *.png *.JPG *.JPEG *.PNG; do
+            [ -f "$f" ] || continue
+            base="${f%.*}"
+            webp="${base}.webp"
+            if command -v convert >/dev/null 2>&1; then
+              TOOL="convert"
+            elif command -v magick >/dev/null 2>&1; then
+              TOOL="magick"
+            else
+              echo "ImageMagick tidak tersedia, lewati."
+              exit 0
+            fi
+            # konversi ke WebP jika belum ada atau lebih baru
+            if [ ! -f "$webp" ] || [ "$f" -nt "$webp" ]; then
+              $TOOL "$f" -resize '1600>' -quality 82 "$webp" 2>/dev/null && echo "WebP: $f -> $webp"
+            fi
+            # kompres file asli
+            $TOOL "$f" -resize '1600>' -quality 82 "$f" 2>/dev/null && echo "Kompres: $f"
+          done
+
+      - name: Commit hasil
+        run: |
+          cd "$GITHUB_WORKSPACE"
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add gambar/
+          if git diff --cached --quiet; then
+            echo "Tidak ada perubahan, skip commit."
+          else
+            git commit -m "chore: kompres & konversi gambar ke WebP (otomatis)"
+            git push
+          fi
