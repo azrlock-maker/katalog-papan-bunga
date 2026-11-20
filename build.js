@@ -474,6 +474,11 @@ const layout = ({
   <meta name="twitter:image" content="${alamatAbsolut(gambarOg)}" />
 
   <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <style>
+    .site-header,.site-footer{display:block !important;}
+    .site-header{position:sticky;top:0;z-index:50;background:var(--header-bg,rgba(244,250,247,.92));backdrop-filter:saturate(140%) blur(10px);border-bottom:1px solid var(--line,#d9e8e1);}
+    .site-footer{background:var(--brand-deep,#062e2b);color:var(--on-brand-soft,rgba(244,251,247,.8));padding:64px 0 28px;}
+  </style>
   <link rel="stylesheet" href="${CSS_URL}" />
   <script>document.documentElement.classList.remove("no-js");document.documentElement.classList.add("js");</script>
   ${skema
@@ -1112,7 +1117,7 @@ const halamanGaleri = () => {
       <button class="lightbox-prev" type="button" data-lb-prev aria-label="Sebelumnya">‹</button>
       <button class="lightbox-next" type="button" data-lb-next aria-label="Berikutnya">›</button>
       <figure class="lightbox-figure">
-        <img id="lb-img" src="" alt="" />
+        <img id="lb-img" src="" alt="" width="1200" height="900" />
         <figcaption id="lb-caption"></figcaption>
       </figure>
     </div>
