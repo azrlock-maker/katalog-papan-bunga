@@ -821,11 +821,36 @@ const beranda = () => {
             )
             .join("")}
         </div>
-        ${
-          toko.linkUlasanGoogle
-            ? `<div style="text-align:center;margin-top:28px;"><a class="btn btn-outline" href="${esc(toko.linkUlasanGoogle)}" target="_blank" rel="noopener">${ikon("star")} Tulis ulasan di Google</a></div>`
-            : ""
-        }
+        <div class="ulasan-form-wrap">
+          <h3>Tulis ulasan Anda</h3>
+          <p class="ulasan-sub">Bagikan pengalaman Anda memesan papan bunga di AKIO FLORIST.</p>
+          <form class="ulasan-form" action="https://formsubmit.co/akioflorist@gmail.com" method="POST">
+            <input type="hidden" name="_subject" value="Ulasan baru - AKIO FLORIST" />
+            <input type="hidden" name="_captcha" value="false" />
+            <input type="hidden" name="_template" value="table" />
+            <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" />
+            <div class="ulasan-row">
+              <label>Nama<input type="text" name="nama" required placeholder="Nama Anda" /></label>
+              <label>Kota<input type="text" name="kota" placeholder="Kota Anda" /></label>
+            </div>
+            <label>Rating
+              <select name="rating" required>
+                <option value="5">★★★★★ 5 - Sangat puas</option>
+                <option value="4">★★★★☆ 4 - Puas</option>
+                <option value="3">★★★☆☆ 3 - Cukup</option>
+                <option value="2">★★☆☆☆ 2 - Kurang</option>
+                <option value="1">★☆☆☆☆ 1 - Tidak puas</option>
+              </select>
+            </label>
+            <label>Ulasan Anda<textarea name="ulasan" rows="4" required placeholder="Ceritakan pengalaman Anda..."></textarea></label>
+            <button class="btn btn-primary" type="submit">Kirim Ulasan</button>
+          </form>
+          ${
+            toko.linkUlasanGoogle
+              ? `<p class="ulasan-alt">Atau tulis langsung di <a href="${esc(toko.linkUlasanGoogle)}" target="_blank" rel="noopener">Google Reviews</a>.</p>`
+              : ""
+          }
+        </div>
       </div>
     </section>`
         : `
@@ -834,17 +859,40 @@ const beranda = () => {
         <div class="section-head">
           <span class="eyebrow">Kata pelanggan</span>
           <h2>Dipercaya untuk momen penting</h2>
-          <p>Ulasan pelanggan akan tampil di sini setelah Anda menerima review dari Google Business Profile.</p>
+          <p>Bagikan pengalaman Anda memesan papan bunga di AKIO FLORIST.</p>
         </div>
         <div class="empty-state" style="display:block;">
           <strong>Belum ada ulasan</strong>
           Jadilah yang pertama memberikan ulasan untuk AKIO FLORIST.
         </div>
-        ${
-          toko.linkUlasanGoogle
-            ? `<div style="text-align:center;margin-top:20px;"><a class="btn btn-primary" href="${esc(toko.linkUlasanGoogle)}" target="_blank" rel="noopener">${ikon("star")} Tulis ulasan di Google</a></div>`
-            : ""
-        }
+        <div class="ulasan-form-wrap" style="margin-top:24px;">
+          <form class="ulasan-form" action="https://formsubmit.co/akioflorist@gmail.com" method="POST">
+            <input type="hidden" name="_subject" value="Ulasan baru - AKIO FLORIST" />
+            <input type="hidden" name="_captcha" value="false" />
+            <input type="hidden" name="_template" value="table" />
+            <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" />
+            <div class="ulasan-row">
+              <label>Nama<input type="text" name="nama" required placeholder="Nama Anda" /></label>
+              <label>Kota<input type="text" name="kota" placeholder="Kota Anda" /></label>
+            </div>
+            <label>Rating
+              <select name="rating" required>
+                <option value="5">★★★★★ 5 - Sangat puas</option>
+                <option value="4">★★★★☆ 4 - Puas</option>
+                <option value="3">★★★☆☆ 3 - Cukup</option>
+                <option value="2">★★☆☆☆ 2 - Kurang</option>
+                <option value="1">★☆☆☆☆ 1 - Tidak puas</option>
+              </select>
+            </label>
+            <label>Ulasan Anda<textarea name="ulasan" rows="4" required placeholder="Ceritakan pengalaman Anda..."></textarea></label>
+            <button class="btn btn-primary" type="submit">Kirim Ulasan</button>
+          </form>
+          ${
+            toko.linkUlasanGoogle
+              ? `<p class="ulasan-alt" style="text-align:center;margin-top:14px;">Atau tulis langsung di <a href="${esc(toko.linkUlasanGoogle)}" target="_blank" rel="noopener">Google Reviews</a>.</p>`
+              : ""
+          }
+        </div>
       </div>
     </section>`
     }
