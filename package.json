@@ -5,6 +5,8 @@
   "description": "Website katalog papan bunga Akio Florist - statis, cepat, dan ramah SEO.",
   "scripts": {
     "build": "node build.js",
+    "compress": "bash alat/kompres-gambar.sh",
+    "build:full": "bash alat/kompres-gambar.sh && node build.js",
     "start": "node build.js && node alat/pratinjau.js"
   },
   "engines": {
