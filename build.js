@@ -1529,6 +1529,12 @@ salinFolder(path.join(ROOT, "aset"), path.join(DIST, "aset"));
 fs.copyFileSync(path.join(ROOT, "aset", "style.css"), path.join(DIST, "aset", `main.${CSS_HASH}.css`));
 fs.copyFileSync(path.join(ROOT, "aset", "app.js"), path.join(DIST, "aset", `app.${JS_HASH}.js`));
 fs.copyFileSync(path.join(ROOT, "favicon.svg"), path.join(DIST, "favicon.svg"));
+// Verifikasi Google Search Console (metode file HTML): salin berkas google*.html ke akar dist
+for (const namaBerkas of fs.readdirSync(ROOT)) {
+  if (/^google[a-z0-9]+\.html$/i.test(namaBerkas)) {
+    fs.copyFileSync(path.join(ROOT, namaBerkas), path.join(DIST, namaBerkas));
+  }
+}
 
 // Header cache-control: cegah cache stale di CDN/browser
 const headersIsi = `/*\n  Cache-Control: no-cache, no-store, must-revalidate\n\n/aset/main.*.css\n  Cache-Control: public, max-age=31536000, immutable\n\n/aset/app.*.js\n  Cache-Control: public, max-age=31536000, immutable\n`;
