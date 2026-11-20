@@ -313,7 +313,7 @@ content:
           - name: plausibleDomain
             label: Domain Plausible
             type: string
-            description: "Contoh: akio-florist.netlify.app"
+            description: "Contoh: akioflorist.biz.id"
           - name: umamiWebsiteId
             label: ID Website Umami
             type: string
