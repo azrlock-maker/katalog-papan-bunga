@@ -8,7 +8,7 @@ media:
   input: gambar
   output: /gambar
   rename: safe
-  extensions: [jpg, jpeg, png, webp]
+  extensions: [jpg, jpeg, png, webp, gif, avif, heic, heif, bmp]
   categories:
     - image
 
@@ -60,7 +60,7 @@ content:
         label: Foto produk
         type: image
         required: true
-        description: "Rasio 4:3 (mis. 1200 x 900 px). Crop manual sebelum upload agar tidak terpotong/letterbox."
+        description: "Rasio 4:3 (mis. 1200 x 900 px). Crop manual. Maks 2 MB; kompres dulu jika lebih besar. Format: JPG, PNG, WebP."
       - name: gambarOg
         label: Foto untuk media sosial (opsional)
         type: image
@@ -130,7 +130,7 @@ content:
       - name: gambar
         label: Gambar kategori
         type: image
-        description: "Rasio 4:3 (mis. 1200 x 900 px). Crop manual sebelum upload."
+        description: "Rasio 4:3 (mis. 1200 x 900 px). Crop manual. Maks 2 MB. Format: JPG, PNG, WebP."
 
   - name: testimoni
     label: Testimoni Pelanggan
@@ -173,7 +173,7 @@ content:
       - name: logo
         label: Logo toko
         type: image
-        description: "Logo persegi, min 200 x 200 px. Crop manual sebelum upload. Jika kosong, ikon bunga dipakai."
+        description: "Logo persegi, min 200 x 200 px. Crop manual. Maks 1 MB. Jika kosong, ikon bunga dipakai."
       - name: tagline
         label: Tagline
         type: string
