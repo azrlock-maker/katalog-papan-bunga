@@ -460,7 +460,7 @@ const layout = ({
   <meta name="twitter:image" content="${alamatAbsolut(gambarOg)}" />
 
   <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-  <link rel="stylesheet" href="/aset/style.css" />
+  <link rel="stylesheet" href="/aset/style.css?v=${Date.now()}" />
   <script>document.documentElement.classList.remove("no-js");document.documentElement.classList.add("js");</script>
   ${skema
     .map(
@@ -494,7 +494,7 @@ ${isi}
       </form>
     </div>
   </div>
-  <script src="/aset/app.js" defer></script>
+  <script src="/aset/app.js?v=${Date.now()}" defer></script>
 </body>
 </html>
 `;
