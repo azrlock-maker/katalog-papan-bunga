@@ -128,17 +128,6 @@ content:
         label: Slug kategori
         type: string
         required: true
-      - name: ikon
-        label: Ikon
-        type: select
-        options:
-          values:
-            - sparkle
-            - leaf
-            - star
-            - heart
-            - pen
-            - vase
       - name: deskripsi
         label: Deskripsi singkat
         type: text

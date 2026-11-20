@@ -544,7 +544,6 @@ const kartuProduk = (p) => `
 
 const kartuKategori = (k) => `
   <a class="kategori-card reveal" href="/katalog/${esc(k.slug)}/">
-    <span class="kategori-icon">${ikon(petaIkonKategori[k.ikon] || "bunga")}</span>
     ${imgWebp(k.gambar, k.nama, "1200", "900", "lazy", "object-position: " + (k.fokusGambar || "center") + ";")}
     <div class="kategori-body">
       <h3>${esc(k.nama)}</h3>
