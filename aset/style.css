@@ -44,6 +44,9 @@
   --shadow-btn: 0 10px 24px -12px rgba(6, 46, 43, 0.65);
   --radius: 18px;
   --container: 1180px;
+  --text: var(--ink);
+  --muted: var(--ink-soft);
+  --shadow-lg: var(--shadow-md);
   --serif: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Georgia, serif;
   --sans: "Segoe UI", system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
 }
@@ -87,6 +90,10 @@ html[data-theme="dark"] {
   --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3), 0 8px 22px rgba(0, 0, 0, 0.25);
   --shadow-md: 0 24px 50px -22px rgba(0, 0, 0, 0.7);
   --shadow-btn: 0 10px 24px -12px rgba(0, 0, 0, 0.7);
+}
+
+html[data-theme="dark"] .badge-gold {
+  color: var(--on-gold);
 }
 
 *,
@@ -1676,12 +1683,8 @@ body.lb-open {
 
 .tautan-wa:hover,
 .tautan-wa:focus-visible {
-  color: var(--brand-strong);
+  color: var(--brand-strong-hover);
   text-decoration-thickness: 2px;
-}
-
-.harga-box .note .tautan-wa {
-  color: var(--brand-strong);
 }
 
 .produk-cta {
@@ -2247,23 +2250,6 @@ body.lb-open {
     height: 200px;
   }
 }
-  .site-header,
-  .site-footer,
-  .wa-float,
-  .cta-band,
-  .produk-cta,
-  .breadcrumb {
-    display: none !important;
-  }
-
-  body {
-    background: #fff;
-  }
-}
-
-
-/* ----------------------------- Cetak ----------------------------------- */
-
 
 /* ----------------------------- Ulasan form ------------------------------ */
 .ulasan-form-wrap {

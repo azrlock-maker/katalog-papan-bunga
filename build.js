@@ -486,6 +486,7 @@ const layout = ({
   <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
   <style>
     .site-header,.site-footer{display:block !important;}
+    body{background:var(--bg,#f4faf7);color:var(--ink,#10231d);}
     .site-header{position:sticky;top:0;z-index:50;background:var(--header-bg,rgba(244,250,247,.92));backdrop-filter:saturate(140%) blur(10px);border-bottom:1px solid var(--line,#d9e8e1);}
     .site-footer{background:var(--brand-deep,#062e2b);color:var(--on-brand-soft,rgba(244,251,247,.8));padding:64px 0 28px;}
   </style>
@@ -546,7 +547,7 @@ const kartuProduk = (p) => `
             : "Harga sesuai desain"
         }</span>
         <div class="produk-aksi">
-          <button class="btn btn-sm btn-quickview" type="button" data-slug="${esc(p.slug)}" data-nama="${esc(p.nama)}">Pesan cepat</button>
+          <a class="btn btn-sm" href="${tautanWa("Halo " + toko.nama + ", saya ingin pesan " + p.nama + ". Mohon info harga dan ketersediaan.")}" target="_blank" rel="noopener">Pesan cepat</a>
           <span class="produk-more">Detail ${ikon("panah")}</span>
         </div>
       </div>
