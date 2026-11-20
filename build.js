@@ -528,6 +528,7 @@ const kartuProduk = (p) => `
     <div class="produk-body">
       <span class="produk-kategori">${esc(p.kategori)}</span>
       <h3><a href="/produk/${esc(p.slug)}/">${esc(p.nama)}</a></h3>
+      <p class="produk-ringkas">${esc(p.ringkas || "")}</p>
       <div class="produk-foot">
         <span class="produk-harga">${
           tampilHarga
