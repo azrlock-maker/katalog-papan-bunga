@@ -87,7 +87,7 @@
     "kategori": "Papan Bunga Standard",
     "harga": 200000,
     "satuan": "per papan",
-    "unggulan": true,
+    "unggulan": false,
     "gambar": "/gambar/papan-bunga-wisuda.webp",
     "alt": "Papan bunga wisuda dengan bunga warna lembut dan tulisan selamat wisuda",
     "ringkas": "Ucapan selamat wisuda dengan nuansa bunga lembut dan tulisan custom nama serta gelar sarjana.",
@@ -160,6 +160,33 @@
       "ulang tahun",
       "anniversary",
       "hadiah"
+    ]
+  },
+  {
+    "nama": "Papan bunga double wedding",
+    "slug": "papan-bunga-double-wedding",
+    "kategori": "Papan Bunga Double",
+    "harga": 375000,
+    "satuan": "per rangkaian",
+    "badge": "Hemat",
+    "unggulan": true,
+    "gambar": "/gambar/img20251108135046.webp",
+    "alt": "Papan bunga dengan ukuran 2x papan standar untuk tampilan yang lebih besar",
+    "ringkas": "Dua papan bunga berdampingan, lebih besar dan lebih mencolok untuk acara besar",
+    "ukuran": "4 x 1,2 meter",
+    "bahan": "Premium",
+    "pengerjaan": "1 hari kerja (bisa dipercepat sesuai ketersediaan)",
+    "termasuk": [
+      "Papan gandeng dengan tampilan lebih besar",
+      "Tulisan sesuai request",
+      "Pengantaran sesuai alamat"
+    ],
+    "tags": [
+      "wedding",
+      "terpercaya",
+      "murah",
+      "padang panjang",
+      "batipuh"
     ]
   }
 ]
