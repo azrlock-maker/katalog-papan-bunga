@@ -176,7 +176,8 @@ function perbaruiJson(pasangan) {
   if (!daftar.size) return;
 
   for (const berkas of pindaiJson(DATA)) {
-    const asli = fs.readFileSync(berkas, "utf8");
+    const mentah = fs.readFileSync(berkas, "utf8");
+    const asli = mentah.replace(/^\uFEFF/, "");
     let baru = asli;
 
     for (const { dari, ke } of daftar.values()) {
@@ -184,7 +185,7 @@ function perbaruiJson(pasangan) {
       baru = baru.replace(pola, ke);
     }
 
-    if (baru !== asli) {
+    if (baru !== mentah) {
       fs.writeFileSync(berkas, baru, "utf8");
       console.log(`  JSON diperbarui: ${rel(berkas)}`);
     }

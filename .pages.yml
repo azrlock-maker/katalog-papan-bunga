@@ -155,6 +155,8 @@ content:
     type: collection
     path: data/galeri
     format: json
+    # Pages CMS default untuk collection adalah .md; paksa .json agar dibaca build.js
+    filename: "{year}-{month}-{day}-{primary}.json"
     fields:
       - name: judul
         label: Judul / keterangan

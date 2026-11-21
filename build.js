@@ -31,7 +31,9 @@ const JS_HASH = hashFile("aset/app.js");
 const CSS_URL = `/aset/main.${CSS_HASH}.css`;
 const JS_URL = `/aset/app.${JS_HASH}.js`;
 
-const bacaJson = (nama) => JSON.parse(fs.readFileSync(path.join(ROOT, "data", nama), "utf8"));
+// Beberapa entri CMS lama memiliki UTF-8 BOM; buang sebelum JSON.parse.
+const bacaJson = (nama) =>
+  JSON.parse(fs.readFileSync(path.join(ROOT, "data", nama), "utf8").replace(/^\uFEFF/, ""));
 const toko = bacaJson("toko.json");
 let kategori = bacaJson("kategori.json");
 let produk = bacaJson("katalog.json");
@@ -47,12 +49,13 @@ let galeri = [];
 try {
   const dir = path.join(ROOT, "data", "galeri");
   if (fs.existsSync(dir)) {
-    const files = fs.readdirSync(dir).filter((f) => f.endsWith(".json"));
+    // Pages CMS historical: entri galeri lama tersimpan sebagai .md berisi JSON.
+    const files = fs.readdirSync(dir).filter((f) => /\.(json|md)$/i.test(f));
     galeri = files.map((f) => {
       try {
-        const g = JSON.parse(fs.readFileSync(path.join(dir, f), "utf8"));
+        const g = JSON.parse(fs.readFileSync(path.join(dir, f), "utf8").replace(/^\uFEFF/, ""));
         return {
-          judul: g.judul || g.nama || "Orderan papan bunga",
+          judul: (g.judul || g.nama || "Orderan papan bunga").trim(),
           gambar: Array.isArray(g.gambar) ? g.gambar : g.gambar ? [g.gambar] : [],
           tanggal: g.tanggal || "",
           tags: Array.isArray(g.tags) ? g.tags : [],
