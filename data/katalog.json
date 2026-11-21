@@ -69,9 +69,8 @@
     "bahan": "Bunga artificial premium & ornamen",
     "pengerjaan": "1 - 2 hari kerja",
     "termasuk": [
-      "Rangkaian bunga penuh dua sisi",
+      "Rangkaian bunga satu titik",
       "Tulisan nama perusahaan custom",
-      "Ornamen pita dan lampu (opsional)",
       "Pengiriman area Padang Panjang"
     ],
     "tags": [
@@ -96,9 +95,8 @@
     "bahan": "Bunga artificial premium",
     "pengerjaan": "1 hari kerja",
     "termasuk": [
-      "Rangkaian bunga dua sisi",
+      "Rangkaian bunga satu titik",
       "Tulisan nama dan gelar custom",
-      "Kartu ucapan pengirim",
       "Pengiriman area Padang Panjang"
     ],
     "tags": [
@@ -124,7 +122,7 @@
     "bahan": "Bunga artificial premium & aksen emas",
     "pengerjaan": "1 - 2 hari kerja",
     "termasuk": [
-      "Rangkaian bunga",
+      "Rangkaian bunga satu titik",
       "Tulisan nama mempelai custom",
       "Antar sesuai alamat"
     ],
@@ -140,16 +138,16 @@
     "nama": "Papan Bunga Custom Nama",
     "slug": "papan-bunga-custom-nama",
     "kategori": "Papan Bunga Standard",
-    "harga": 800000,
+    "harga": 200000,
     "satuan": "per papan",
     "badge": "Favorit",
     "unggulan": true,
     "gambar": "/gambar/papan-bunga-custom-nama.webp",
     "alt": "Papan bunga custom dengan tulisan nama besar dan rangkaian bunga warna sesuai permintaan",
     "ringkas": "Papan bunga custom dengan tulisan nama besar dan warna sesuai permintaan, cocok untuk hadiah pribadi maupun brand.",
-    "ukuran": "2 x 1 meter (bisa disesuaikan)",
+    "ukuran": "2 x 1,2 meter (bisa disesuaikan)",
     "bahan": "Bunga sesuai pilihan & papan custom",
-    "pengerjaan": "2 - 3 hari kerja",
+    "pengerjaan": "1 hari kerja",
     "termasuk": [
       "Konsultasi desain",
       "Tulisan dan warna custom",
