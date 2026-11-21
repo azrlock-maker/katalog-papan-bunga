@@ -223,6 +223,14 @@ content:
         label: Logo toko
         type: image
         description: "Logo persegi, min 200 x 200 px. Crop manual. Maks 1 MB. Jika kosong, ikon bunga dipakai."
+      - name: tentangGambar
+        label: Foto bagian Tentang Kami
+        type: image
+        description: "Foto di samping teks Tentang Kami di beranda. Rasio ideal 4:3 (1200 x 900 px). Foto >3 MB sebaiknya dikompres dulu di /kompres-gambar.html."
+      - name: tentangGambarAlt
+        label: Keterangan foto Tentang Kami
+        type: string
+        description: "Teks alternatif untuk SEO & pembaca layar. Contoh: Tim AKIO FLORIST merangkai papan bunga grand opening."
       - name: tagline
         label: Tagline
         type: string

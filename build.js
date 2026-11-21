@@ -99,6 +99,11 @@ const logoToko = toko.logo
     : "/" + toko.logo
   : "";
 
+const gambarToko = (src) => {
+  if (!src) return "";
+  return /^https?:\/\//.test(src) || src.startsWith("/") ? src : "/" + src;
+};
+
 const webpJikaAda = (src) => {
   if (!src || /^https?:\/\//.test(src)) return null;
   const webp = src.replace(/\.(jpe?g|png)$/i, ".webp");
@@ -814,7 +819,14 @@ const beranda = () => {
     <section class="section section-cream" id="tentang">
       <div class="container tentang-grid">
         <div class="tentang-media reveal">
-          ${imgWebp("/gambar/papan-bunga-grand-opening.jpg", "Papan bunga grand opening buatan " + toko.nama, "1200", "900", "lazy", null)}
+          ${imgWebp(
+            gambarToko(toko.tentangGambar) || "/gambar/papan-bunga-grand-opening.jpg",
+            toko.tentangGambarAlt || "Papan bunga grand opening buatan " + toko.nama,
+            "1200",
+            "900",
+            "lazy",
+            null,
+          )}
           <div class="tentang-note">
             <strong>${jumlahKategori} kategori</strong>
             ${produk.length} pilihan papan bunga siap dipesan
