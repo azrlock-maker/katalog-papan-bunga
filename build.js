@@ -1196,7 +1196,7 @@ const halamanGaleri = () => {
       <button class="lightbox-prev" type="button" data-lb-prev aria-label="Sebelumnya">‹</button>
       <button class="lightbox-next" type="button" data-lb-next aria-label="Berikutnya">›</button>
       <figure class="lightbox-figure">
-        <img id="lb-img" src="" alt="" width="1200" height="900" />
+        <img id="lb-img" src="" alt="" />
         <figcaption id="lb-caption"></figcaption>
       </figure>
     </div>
