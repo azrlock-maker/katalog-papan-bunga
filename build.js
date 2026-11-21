@@ -964,7 +964,9 @@ const beranda = () => {
     jalur: "/",
     isi,
     aktif: "beranda",
-    gambarOg: logoToko || "/gambar/og-default.jpg",
+    // OG image memakai JPG 1200x630 (kompatibel untuk WhatsApp/Facebook),
+    // bukan logo WebP yang berukuran 400x400.
+    gambarOg: "/gambar/og-default.jpg",
     skema: [skemaToko, skemaFaq],
   });
 };
@@ -1488,6 +1490,10 @@ salinFolder(path.join(ROOT, "aset"), path.join(DIST, "aset"));
 fs.copyFileSync(path.join(ROOT, "aset", "style.css"), path.join(DIST, "aset", `main.${CSS_HASH}.css`));
 fs.copyFileSync(path.join(ROOT, "aset", "app.js"), path.join(DIST, "aset", `app.${JS_HASH}.js`));
 fs.copyFileSync(path.join(ROOT, "favicon.svg"), path.join(DIST, "favicon.svg"));
+// Alat kompresi gambar untuk pengelola CMS (dibuka sebelum upload ke Pages CMS)
+if (fs.existsSync(path.join(ROOT, "kompres-gambar.html"))) {
+  fs.copyFileSync(path.join(ROOT, "kompres-gambar.html"), path.join(DIST, "kompres-gambar.html"));
+}
 // Verifikasi Google Search Console (metode file HTML): salin berkas google*.html ke akar dist
 for (const namaBerkas of fs.readdirSync(ROOT)) {
   if (/^google[a-z0-9_-]+\.html$/i.test(namaBerkas)) {

@@ -1,4 +1,6 @@
 dist/
 node_modules/
+.github/imgopt/node_modules/
+.github/imgopt/package-lock.json
 Thumbs.db
 .DS_Store

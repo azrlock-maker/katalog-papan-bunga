@@ -1,61 +1,78 @@
-name: Kompres & konversi gambar ke WebP otomatis
+name: Optimalkan gambar ke WebP ±200 KB
 
 on:
   push:
     branches: [main]
     paths:
       - "gambar/**"
-  pull_request:
-    branches: [main]
-    paths:
-      - "gambar/**"
+  # Tombol "Optimalkan gambar (WebP ±200 KB)" di Pages CMS → Media
+  workflow_dispatch:
+    inputs:
+      payload:
+        description: "Payload dari Pages CMS (JSON, opsional)"
+        required: false
+        type: string
 
 permissions:
   contents: write
+
+concurrency:
+  group: imgopt-${{ github.ref }}
+  cancel-in-progress: false
 
 jobs:
   optimize:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      - name: Ambil repository
         uses: actions/checkout@v4
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           fetch-depth: 0
 
-      - name: Kompres & konversi ke WebP (ImageMagick)
-        run: |
-          set -e
-          cd gambar
-          for f in *.jpg *.jpeg *.png *.JPG *.JPEG *.PNG; do
-            [ -f "$f" ] || continue
-            base="${f%.*}"
-            webp="${base}.webp"
-            if command -v convert >/dev/null 2>&1; then
-              TOOL="convert"
-            elif command -v magick >/dev/null 2>&1; then
-              TOOL="magick"
-            else
-              echo "ImageMagick tidak tersedia, lewati."
-              exit 0
-            fi
-            # konversi ke WebP jika belum ada atau lebih baru
-            if [ ! -f "$webp" ] || [ "$f" -nt "$webp" ]; then
-              $TOOL "$f" -resize '1600>' -quality 82 "$webp" 2>/dev/null && echo "WebP: $f -> $webp"
-            fi
-            # kompres file asli
-            $TOOL "$f" -resize '1600>' -quality 82 "$f" 2>/dev/null && echo "Kompres: $f"
-          done
+      - name: Siapkan Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
 
-      - name: Commit hasil
+      - name: Pasang sharp
+        run: npm install --prefix .github/imgopt --no-audit --no-fund
+
+      - name: Tentukan gambar yang diproses
+        id: target
         run: |
-          cd "$GITHUB_WORKSPACE"
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            echo "mode=all" >> "$GITHUB_OUTPUT"
+            echo "Dipicu manual dari Pages CMS: memindai semua gambar."
+          else
+            files=$(git diff-tree --no-commit-id --name-only -r --diff-filter=AM "${{ github.sha }}" -- gambar/ | tr '\n' ' ')
+            echo "files=$files" >> "$GITHUB_OUTPUT"
+            if [ -z "$files" ]; then
+              echo "mode=none" >> "$GITHUB_OUTPUT"
+              echo "Tidak ada gambar baru pada commit ini."
+            else
+              echo "mode=files" >> "$GITHUB_OUTPUT"
+              echo "Gambar berubah: $files"
+            fi
+          fi
+
+      - name: Buat WebP ±200 KB
+        if: steps.target.outputs.mode != 'none'
+        run: |
+          if [ "${{ steps.target.outputs.mode }}" = "all" ]; then
+            node .github/imgopt/optimize.mjs --all --target-kb 200 --max-edge 1600
+          else
+            node .github/imgopt/optimize.mjs ${{ steps.target.outputs.files }} --target-kb 200 --max-edge 1600
+          fi
+
+      - name: Simpan hasil
+        run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add gambar/
+          git add gambar data
           if git diff --cached --quiet; then
-            echo "Tidak ada perubahan, skip commit."
+            echo "Tidak ada perubahan, tidak perlu commit."
           else
-            git commit -m "chore: kompres & konversi gambar ke WebP (otomatis)"
-            git push
+            git commit -m "chore: optimalkan gambar ke WebP ±200 KB (otomatis)"
+            git push origin HEAD:main
           fi

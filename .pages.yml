@@ -11,6 +11,14 @@ media:
   extensions: [jpg, jpeg, png, webp, gif, avif, heic, heif, bmp]
   categories:
     - image
+  actions:
+    - name: optimalkan-gambar
+      label: "Optimalkan gambar (WebP ±200 KB)"
+      workflow: kompres-gambar.yml
+      confirm:
+        title: Optimalkan semua gambar?
+        message: "Foto di folder gambar akan dibuatkan versi WebP ±200 KB dan referensi di data/*.json diperbarui."
+        button: Optimalkan sekarang
 
 content:
   - name: katalog

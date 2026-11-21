@@ -1,0 +1,323 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Kompres Gambar — AKIO FLORIST</title>
+  <style>
+    :root {
+      --bg: #f4faf7;
+      --surface: #ffffff;
+      --ink: #10231d;
+      --muted: #5c7169;
+      --line: #d9e8e1;
+      --brand: #0b4f45;
+      --gold: #b8892b;
+      --radius: 16px;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      padding: 32px 16px 64px;
+      background: var(--bg);
+      color: var(--ink);
+      font: 16px/1.6 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    }
+    .wrap { max-width: 760px; margin: 0 auto; }
+    h1 { margin: 0 0 6px; font-size: 1.7rem; color: var(--brand); }
+    .sub { margin: 0 0 24px; color: var(--muted); }
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 22px;
+      margin-bottom: 18px;
+      box-shadow: 0 6px 24px rgba(11, 79, 69, .05);
+    }
+    label { display: block; font-weight: 600; margin: 0 0 8px; }
+    input[type="file"], select, input[type="number"] {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: var(--bg);
+      color: var(--ink);
+      font: inherit;
+    }
+    .row { display: flex; gap: 14px; flex-wrap: wrap; margin-top: 16px; }
+    .row > div { flex: 1 1 180px; }
+    button {
+      border: 0;
+      border-radius: 10px;
+      padding: 13px 20px;
+      font: inherit;
+      font-weight: 700;
+      cursor: pointer;
+      background: var(--brand);
+      color: #fff;
+    }
+    button:disabled { opacity: .5; cursor: not-allowed; }
+    button.secondary { background: var(--gold); }
+    .hasil { display: none; }
+    .hasil.aktif { display: block; }
+    .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; margin: 16px 0; }
+    .stat { background: var(--bg); border-radius: 12px; padding: 12px 14px; }
+    .stat span { display: block; color: var(--muted); font-size: .82rem; }
+    .stat strong { font-size: 1.1rem; word-break: break-all; }
+    .preview { width: 100%; max-height: 300px; object-fit: contain; border-radius: 10px; background: var(--bg); }
+    .nama { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: .9rem; word-break: break-all; }
+    .petunjuk { color: var(--muted); font-size: .92rem; }
+    .error { color: #a32626; font-weight: 600; }
+    .success { color: var(--brand); font-weight: 600; }
+    code { background: var(--bg); padding: 2px 6px; border-radius: 6px; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>Kompres Gambar</h1>
+    <p class="sub">Ubah foto besar jadi WebP ±200 KB <em>sebelum</em> di-upload ke Pages CMS. Semua proses terjadi di browser Anda — file tidak dikirim ke mana pun.</p>
+
+    <div class="card">
+      <label for="file">Pilih foto (JPG / PNG / WebP)</label>
+      <input id="file" type="file" accept="image/jpeg,image/png,image/webp,.jpg,.jpeg,.png,.webp" />
+
+      <div class="row">
+        <div>
+          <label for="edge">Ukuran maksimal sisi terpanjang</label>
+          <select id="edge">
+            <option value="1200">1200 px (paling ringan)</option>
+            <option value="1600" selected>1600 px (disarankan)</option>
+            <option value="2000">2000 px (paling tajam)</option>
+          </select>
+        </div>
+        <div>
+          <label for="target">Target ukuran (KB)</label>
+          <input id="target" type="number" min="80" max="1000" step="10" value="200" />
+        </div>
+      </div>
+
+      <div class="row">
+        <button id="proses" type="button">Kompres sekarang</button>
+      </div>
+      <p id="pesan" class="petunjuk" style="margin-top:14px;"></p>
+    </div>
+
+    <div id="hasil" class="card hasil">
+      <h2 style="margin-top:0;font-size:1.2rem;">Hasil</h2>
+      <div class="stats">
+        <div class="stat"><span>Ukuran awal</span><strong id="awal">—</strong></div>
+        <div class="stat"><span>Ukuran akhir</span><strong id="akhir" class="success">—</strong></div>
+        <div class="stat"><span>Dimensi</span><strong id="dimensi">—</strong></div>
+        <div class="stat"><span>Kualitas WebP</span><strong id="kualitas">—</strong></div>
+      </div>
+      <img id="preview" class="preview" alt="Pratinjau hasil kompresi" />
+      <p style="margin-top:16px;">Nama file hasil:</p>
+      <p class="nama" id="namafile">—</p>
+      <div class="row">
+        <button id="unduh" class="secondary" type="button">Unduh .webp</button>
+      </div>
+      <p class="petunjuk" style="margin-top:16px;">
+        Setelah diunduh, buka <strong>Pages CMS → Media → gambar</strong>, lalu upload file <code>.webp</code> ini.
+        Karena ukurannya sudah kecil, upload tidak akan gagal.
+      </p>
+    </div>
+
+    <div class="card">
+      <h2 style="margin-top:0;font-size:1.15rem;">Catatan</h2>
+      <ul class="petunjuk" style="margin-bottom:0;">
+        <li>Foto dari iPhone berformat <code>.HEIC</code> biasanya tidak bisa dibaca di Chrome/Edge. Kirim foto dalam format <code>.JPG</code>, atau buka halaman ini di Safari.</li>
+        <li>Kalau hasil masih sedikit di atas target, turunkan ukuran sisi ke <code>1200 px</code> atau target ke <code>150 KB</code>.</li>
+        <li>File asli di HP tidak berubah — yang diunduh hanyalah salinan terkompres.</li>
+      </ul>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      "use strict";
+
+      var elFile = document.getElementById("file");
+      var elEdge = document.getElementById("edge");
+      var elTarget = document.getElementById("target");
+      var elProses = document.getElementById("proses");
+      var elPesan = document.getElementById("pesan");
+      var elHasil = document.getElementById("hasil");
+      var elAwal = document.getElementById("awal");
+      var elAkhir = document.getElementById("akhir");
+      var elDimensi = document.getElementById("dimensi");
+      var elKualitas = document.getElementById("kualitas");
+      var elPreview = document.getElementById("preview");
+      var elNama = document.getElementById("namafile");
+      var elUnduh = document.getElementById("unduh");
+
+      var hasilBlob = null;
+      var hasilNama = "";
+
+      function kb(n) {
+        if (n < 1024) return n + " B";
+        if (n < 1024 * 1024) return Math.round(n / 1024) + " KB";
+        return (n / 1024 / 1024).toFixed(2) + " MB";
+      }
+
+      function namaAman(nama) {
+        var titik = nama.lastIndexOf(".");
+        var pokok = titik > 0 ? nama.slice(0, titik) : nama;
+        return pokok
+          .normalize("NFKD")
+          .replace(/[^a-zA-Z0-9]+/g, "-")
+          .replace(/^-+|-+$/g, "")
+          .toLowerCase() + ".webp";
+      }
+
+      function tutup(src) {
+        if (src && typeof src.close === "function") src.close();
+      }
+
+      function bacaGambar(file) {
+        if ("createImageBitmap" in window) {
+          return createImageBitmap(file, { imageOrientation: "from-image" })
+            .catch(function () { return bacaViaImg(file); });
+        }
+        return bacaViaImg(file);
+      }
+
+      function bacaViaImg(file) {
+        return new Promise(function (resolve, reject) {
+          var url = URL.createObjectURL(file);
+          var img = new Image();
+          img.onload = function () {
+            URL.revokeObjectURL(url);
+            resolve(img);
+          };
+          img.onerror = function () {
+            URL.revokeObjectURL(url);
+            reject(new Error("Gambar tidak bisa dibaca. Coba format JPG atau PNG."));
+          };
+          img.src = url;
+        });
+      }
+
+      function gambarKeCanvas(src, lebar, tinggi) {
+        var canvas = document.createElement("canvas");
+        canvas.width = lebar;
+        canvas.height = tinggi;
+        var ctx = canvas.getContext("2d", { alpha: true });
+        ctx.imageSmoothingEnabled = true;
+        ctx.imageSmoothingQuality = "high";
+        ctx.drawImage(src, 0, 0, lebar, tinggi);
+        return canvas;
+      }
+
+      function keWebP(canvas, kualitas) {
+        return new Promise(function (resolve) {
+          canvas.toBlob(function (blob) { resolve(blob); }, "image/webp", kualitas);
+        });
+      }
+
+      async function kompres(file, sisiMaks, targetByte) {
+        var src = await bacaGambar(file);
+        var lebarAsli = src.width || src.naturalWidth;
+        var tinggiAsli = src.height || src.naturalHeight;
+        if (!lebarAsli || !tinggiAsli) {
+          tutup(src);
+          throw new Error("Ukuran gambar tidak terbaca.");
+        }
+
+        var faktorAwal = Math.min(1, sisiMaks / Math.max(lebarAsli, tinggiAsli));
+        var langkah = [1, 0.85, 0.7, 0.55, 0.42];
+        var kualitas = [0.82, 0.76, 0.70, 0.64, 0.58, 0.52, 0.45, 0.38, 0.3];
+        var terbaik = null;
+        var selesai = false;
+
+        outer:
+        for (var i = 0; i < langkah.length; i++) {
+          var lebar = Math.max(1, Math.round(lebarAsli * faktorAwal * langkah[i]));
+          var tinggi = Math.max(1, Math.round(tinggiAsli * faktorAwal * langkah[i]));
+          var canvas = gambarKeCanvas(src, lebar, tinggi);
+
+          for (var j = 0; j < kualitas.length; j++) {
+            var blob = await keWebP(canvas, kualitas[j]);
+            if (!blob || blob.type !== "image/webp") {
+              tutup(src);
+              throw new Error("Browser ini tidak mendukung WebP. Gunakan Chrome, Edge, atau Safari terbaru.");
+            }
+            if (!terbaik || blob.size < terbaik.blob.size) {
+              terbaik = { blob: blob, lebar: lebar, tinggi: tinggi, q: kualitas[j] };
+            }
+            if (blob.size <= targetByte) {
+              terbaik = { blob: blob, lebar: lebar, tinggi: tinggi, q: kualitas[j] };
+              selesai = true;
+              break outer;
+            }
+          }
+        }
+
+        tutup(src);
+        return { hasil: terbaik, pasTarget: selesai };
+      }
+
+      elProses.addEventListener("click", async function () {
+        var file = elFile.files && elFile.files[0];
+        elPesan.textContent = "";
+        elHasil.classList.remove("aktif");
+
+        if (!file) {
+          elPesan.className = "petunjuk error";
+          elPesan.textContent = "Pilih dulu file gambarnya.";
+          return;
+        }
+        if (!/^image\/(jpeg|png|webp)$/i.test(file.type)) {
+          elPesan.className = "petunjuk error";
+          elPesan.textContent = "Format tidak didukung. Gunakan JPG, PNG, atau WebP. (.HEIC tidak bisa dibaca di Chrome/Edge.)";
+          return;
+        }
+
+        var sisi = parseInt(elEdge.value, 10) || 1600;
+        var target = (parseInt(elTarget.value, 10) || 200) * 1024;
+
+        elProses.disabled = true;
+        elPesan.className = "petunjuk";
+        elPesan.textContent = "Memproses…";
+
+        try {
+          var out = await kompres(file, sisi, target);
+          hasilBlob = out.hasil.blob;
+          hasilNama = namaAman(file.name);
+
+          elAwal.textContent = kb(file.size);
+          elAkhir.textContent = kb(hasilBlob.size);
+          elDimensi.textContent = out.hasil.lebar + " × " + out.hasil.tinggi + " px";
+          elKualitas.textContent = Math.round(out.hasil.q * 100) + "%";
+          elNama.textContent = hasilNama;
+          elPreview.src = URL.createObjectURL(hasilBlob);
+
+          elPesan.className = "petunjuk success";
+          elPesan.textContent = out.pasTarget
+            ? "Selesai. Hasil sudah di bawah target."
+            : "Selesai, tapi belum mencapai target. Turunkan ukuran sisi atau target lalu ulangi.";
+
+          elHasil.classList.add("aktif");
+        } catch (e) {
+          elPesan.className = "petunjuk error";
+          elPesan.textContent = e && e.message ? e.message : "Gagal memproses gambar.";
+        } finally {
+          elProses.disabled = false;
+        }
+      });
+
+      elUnduh.addEventListener("click", function () {
+        if (!hasilBlob) return;
+        var url = URL.createObjectURL(hasilBlob);
+        var a = document.createElement("a");
+        a.href = url;
+        a.download = hasilNama;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        setTimeout(function () { URL.revokeObjectURL(url); }, 1000);
+      });
+    })();
+  </script>
+</body>
+</html>

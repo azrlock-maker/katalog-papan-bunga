@@ -3,31 +3,31 @@
     "nama": "Papan Bunga Standard",
     "slug": "standard",
     "deskripsi": "Papan bunga ukuran standar, cocok untuk ucapan selamat, wedding, duka cita, dan momen lainnya.",
-    "gambar": "/gambar/img20261111164204-1.jpg"
+    "gambar": "/gambar/img20261111164204-1.webp"
   },
   {
     "nama": "Papan Bunga Double",
     "slug": "double",
     "deskripsi": "Dua papan bunga berdampingan, lebih besar dan lebih mencolok untuk acara besar.",
-    "gambar": "/gambar/img20251108135046.jpg",
+    "gambar": "/gambar/img20251108135046.webp",
     "fokusGambar": "center"
   },
   {
     "nama": "Papan Bunga Standard Mahkota 2 Titik",
     "slug": "mahkota-2-titik",
     "deskripsi": "Papan bunga standar dengan hiasan mahkota dua titik di bagian atas dan bawah",
-    "gambar": "/gambar/img20240912134915.jpg"
+    "gambar": "/gambar/img20240912134915.webp"
   },
   {
     "nama": "Papan Bunga Premium",
     "slug": "premium",
     "deskripsi": "Rangkaian lebih penuh, bahan premium, dan tampilan lebih mewah.",
-    "gambar": "/gambar/whatsapp-image-2026-05-24-at-162136.jpeg"
+    "gambar": "/gambar/whatsapp-image-2026-05-24-at-162136.webp"
   },
   {
     "nama": "Papan Bunga Exclusive",
     "slug": "exclusive",
     "deskripsi": "Desain eksklusif untuk momen spesial dengan rangkaian dan ornamen lengkap.",
-    "gambar": "/gambar/og-default.jpg"
+    "gambar": "/gambar/og-default.webp"
   }
 ]

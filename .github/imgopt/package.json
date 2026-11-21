@@ -1,0 +1,9 @@
+{
+  "name": "akio-imgopt",
+  "version": "1.0.0",
+  "private": true,
+  "description": "WebP optimizer for AKIO FLORIST catalog images (CI only).",
+  "dependencies": {
+    "sharp": "0.33.5"
+  }
+}
