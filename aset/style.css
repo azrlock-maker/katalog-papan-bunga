@@ -2311,6 +2311,41 @@ body.lb-open {
   margin-top: 14px;
 }
 
+/* Anti-spam: honeypot disembunyikan dari manusia tapi tetap dikirim bot */
+.hp-field {
+  position: absolute !important;
+  left: -9999px !important;
+  top: auto !important;
+  width: 1px !important;
+  height: 1px !important;
+  overflow: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+.ulasan-form .ulasan-konfirmasi {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  margin: 12px 0 2px;
+  font-size: 0.82rem;
+  color: var(--ink-soft);
+  line-height: 1.5;
+}
+
+.ulasan-form .ulasan-konfirmasi input {
+  width: auto;
+  flex: 0 0 auto;
+  margin-top: 2px;
+}
+
+.ulasan-error {
+  color: #a32626;
+  font-size: 0.88rem;
+  font-weight: 600;
+  margin: 10px 0 0;
+}
+
 @media (max-width: 600px) {
   .ulasan-row {
     grid-template-columns: 1fr;

@@ -240,6 +240,123 @@
     }
   }
 
+  /* ----------------------------- Validasi ulasan ------------------------ */
+  var formulirUlasan = document.querySelectorAll("[data-ulasan-form]");
+  if (formulirUlasan.length) {
+    var KUNCI_ULASAN = "akio-ulasan-terkirim";
+    var POLA_SPAM = /(viagra|casino|slot|judi|judol|seo|backlink|https?:\/\/|www\.|\.com\b|\.ru\b|\.xyz\b|click here|beli follower|investasi|crypto|bitcoin|pinjaman|wa\.me)/i;
+    var POLA_NAMA = /^[A-Za-zÀ-ÿ' .,\-]+$/;
+
+    Array.prototype.forEach.call(formulirUlasan, function (form) {
+      var fieldWaktu = form.querySelector("[data-waktu-buka]");
+      var areaError = form.querySelector("[data-ulasan-error]");
+      var tombol = form.querySelector('button[type="submit"]');
+      if (fieldWaktu) fieldWaktu.value = String(Date.now());
+
+      function tampilError(pesan, elemen) {
+        if (areaError) { areaError.textContent = pesan; areaError.hidden = false; }
+        if (elemen && typeof elemen.focus === "function") elemen.focus();
+      }
+      function hapusError() {
+        if (areaError) { areaError.textContent = ""; areaError.hidden = true; }
+      }
+
+      form.addEventListener("input", hapusError);
+      form.addEventListener("change", hapusError);
+
+      form.addEventListener("submit", function (e) {
+        hapusError();
+        var data = new FormData(form);
+        var nama = String(data.get("nama") || "").trim();
+        var kota = String(data.get("kota") || "").trim();
+        var rating = String(data.get("rating") || "");
+        var ulasan = String(data.get("ulasan") || "").trim();
+        var inputNama = form.querySelector('[name="nama"]');
+        var inputKota = form.querySelector('[name="kota"]');
+        var inputUlasan = form.querySelector('[name="ulasan"]');
+        var inputRating = form.querySelector('[name="rating"]');
+        var inputKonfirmasi = form.querySelector('[name="konfirmasi"]');
+
+        // 1. Honeypot terisi = bot.
+        var jebakan = form.querySelectorAll('[data-honeypot], [name="_honey"]');
+        for (var i = 0; i < jebakan.length; i++) {
+          if (String(jebakan[i].value || "").trim() !== "") {
+            e.preventDefault();
+            tampilError("Pengiriman ditolak. Silakan coba lagi nanti.");
+            return;
+          }
+        }
+
+        // 2. Diisi terlalu cepat = bot.
+        var buka = Number(fieldWaktu && fieldWaktu.value) || 0;
+        if (buka && Date.now() - buka < 3000) {
+          e.preventDefault();
+          tampilError("Terlalu cepat. Luangkan beberapa saat untuk menulis ulasan.", inputUlasan);
+          return;
+        }
+
+        // 3. Maksimal satu ulasan per perangkat per 24 jam.
+        try {
+          var terakhir = Number(localStorage.getItem(KUNCI_ULASAN) || 0);
+          if (terakhir && Date.now() - terakhir < 86400000) {
+            e.preventDefault();
+            tampilError("Terima kasih. Ulasan dari perangkat ini sudah tercatat.");
+            return;
+          }
+        } catch (err) {}
+
+        // 4. Validasi isi agar tidak menjadi sarang spam.
+        if (nama.length < 2 || !POLA_NAMA.test(nama)) {
+          e.preventDefault();
+          tampilError("Nama harus 2–60 huruf tanpa angka atau tautan.", inputNama);
+          return;
+        }
+        if (kota && (kota.length > 40 || !POLA_NAMA.test(kota))) {
+          e.preventDefault();
+          tampilError("Nama kota tidak valid.", inputKota);
+          return;
+        }
+        if (!/^[1-5]$/.test(rating)) {
+          e.preventDefault();
+          tampilError("Pilih rating terlebih dahulu.", inputRating);
+          return;
+        }
+        if (ulasan.length < 20 || ulasan.length > 800) {
+          e.preventDefault();
+          tampilError("Ulasan sebaiknya 20–800 karakter.", inputUlasan);
+          return;
+        }
+        if (ulasan.split(/\s+/).filter(Boolean).length < 4) {
+          e.preventDefault();
+          tampilError("Tulis ulasan yang lebih lengkap (minimal 4 kata).", inputUlasan);
+          return;
+        }
+        if (POLA_SPAM.test(ulasan) || POLA_SPAM.test(nama)) {
+          e.preventDefault();
+          tampilError("Ulasan mengandung tautan atau kata promosi yang tidak diizinkan.", inputUlasan);
+          return;
+        }
+        if (/<[^>]*>|&\w+;/i.test(ulasan) || /(.)\1{6,}/.test(ulasan)) {
+          e.preventDefault();
+          tampilError("Ulasan tidak valid. Hapus kode/format atau huruf berulang.", inputUlasan);
+          return;
+        }
+        if (inputKonfirmasi && !inputKonfirmasi.checked) {
+          e.preventDefault();
+          tampilError("Centang konfirmasi bahwa Anda pernah memesan.", inputKonfirmasi);
+          return;
+        }
+
+        // 5. Lolos: buang honeypot dari payload, kunci pengiriman, submit asli.
+        var decoy = form.querySelectorAll("[data-honeypot]");
+        for (var j = 0; j < decoy.length; j++) decoy[j].disabled = true;
+        try { localStorage.setItem(KUNCI_ULASAN, String(Date.now())); } catch (err) {}
+        if (tombol) { tombol.disabled = true; tombol.textContent = "Mengirim…"; }
+        HTMLFormElement.prototype.submit.call(form);
+      });
+    });
+  }
+
   /* ----------------------------- Lightbox galeri ------------------------ */
   var lb = document.getElementById("lightbox");
   if (lb) {

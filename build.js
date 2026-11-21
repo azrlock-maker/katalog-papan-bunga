@@ -669,6 +669,47 @@ const skemaRemah = (daftar) => ({
   })),
 });
 
+/* ------------------- Formulir ulasan (dipakai di 2 kondisi) ------------- */
+
+const formulirUlasan = `
+          <form class="ulasan-form" action="https://formsubmit.co/akioflorist@gmail.com" method="POST" data-ulasan-form>
+            <input type="hidden" name="_subject" value="Ulasan baru - AKIO FLORIST" />
+            <input type="hidden" name="_captcha" value="false" />
+            <input type="hidden" name="_template" value="table" />
+            <input type="hidden" name="waktu_buka" value="" data-waktu-buka />
+            <input type="hidden" name="sumber" value="web" />
+
+            <!-- Honeypot bawaan FormSubmit -->
+            <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true" />
+
+            <!-- Honeypot tambahan: tidak terlihat manusia, biasanya diisi bot -->
+            <div class="hp-field" aria-hidden="true">
+              <label>Website<input type="text" name="website" data-honeypot tabindex="-1" autocomplete="off" /></label>
+              <label>Telepon konfirmasi<input type="text" name="telepon_konfirmasi" data-honeypot tabindex="-1" autocomplete="off" /></label>
+              <label>Isi pesan<input type="text" name="isi_pesan" data-honeypot tabindex="-1" autocomplete="off" /></label>
+            </div>
+
+            <div class="ulasan-row">
+              <label>Nama<input type="text" name="nama" required maxlength="60" placeholder="Nama Anda" /></label>
+              <label>Kota<input type="text" name="kota" maxlength="40" placeholder="Kota Anda" /></label>
+            </div>
+            <label>Rating
+              <select name="rating" required>
+                <option value="5">★★★★★ 5 - Sangat puas</option>
+                <option value="4">★★★★☆ 4 - Puas</option>
+                <option value="3">★★★☆☆ 3 - Cukup</option>
+                <option value="2">★★☆☆☆ 2 - Kurang</option>
+                <option value="1">★☆☆☆☆ 1 - Tidak puas</option>
+              </select>
+            </label>
+            <label>Ulasan Anda<textarea name="ulasan" rows="4" required minlength="20" maxlength="800" placeholder="Ceritakan pengalaman Anda..."></textarea></label>
+            <label class="ulasan-konfirmasi">
+              <input type="checkbox" name="konfirmasi" value="iya" required /> Saya mengonfirmasi pernah memesan papan bunga di AKIO FLORIST.
+            </label>
+            <p class="ulasan-error" data-ulasan-error role="alert" hidden></p>
+            <button class="btn btn-primary" type="submit">Kirim Ulasan</button>
+          </form>`;
+
 /* ----------------------------- Halaman beranda ------------------------- */
 
 const beranda = () => {
@@ -830,27 +871,7 @@ const beranda = () => {
         <div class="ulasan-form-wrap">
           <h3>Tulis ulasan Anda</h3>
           <p class="ulasan-sub">Bagikan pengalaman Anda memesan papan bunga di AKIO FLORIST.</p>
-          <form class="ulasan-form" action="https://formsubmit.co/akioflorist@gmail.com" method="POST">
-            <input type="hidden" name="_subject" value="Ulasan baru - AKIO FLORIST" />
-            <input type="hidden" name="_captcha" value="false" />
-            <input type="hidden" name="_template" value="table" />
-            <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" />
-            <div class="ulasan-row">
-              <label>Nama<input type="text" name="nama" required placeholder="Nama Anda" /></label>
-              <label>Kota<input type="text" name="kota" placeholder="Kota Anda" /></label>
-            </div>
-            <label>Rating
-              <select name="rating" required>
-                <option value="5">★★★★★ 5 - Sangat puas</option>
-                <option value="4">★★★★☆ 4 - Puas</option>
-                <option value="3">★★★☆☆ 3 - Cukup</option>
-                <option value="2">★★☆☆☆ 2 - Kurang</option>
-                <option value="1">★☆☆☆☆ 1 - Tidak puas</option>
-              </select>
-            </label>
-            <label>Ulasan Anda<textarea name="ulasan" rows="4" required placeholder="Ceritakan pengalaman Anda..."></textarea></label>
-            <button class="btn btn-primary" type="submit">Kirim Ulasan</button>
-          </form>
+          ${formulirUlasan}
           ${
             toko.linkUlasanGoogle
               ? `<p class="ulasan-alt">Atau tulis langsung di <a href="${esc(toko.linkUlasanGoogle)}" target="_blank" rel="noopener">Google Reviews</a>.</p>`
@@ -872,27 +893,7 @@ const beranda = () => {
           Jadilah yang pertama memberikan ulasan untuk AKIO FLORIST.
         </div>
         <div class="ulasan-form-wrap" style="margin-top:24px;">
-          <form class="ulasan-form" action="https://formsubmit.co/akioflorist@gmail.com" method="POST">
-            <input type="hidden" name="_subject" value="Ulasan baru - AKIO FLORIST" />
-            <input type="hidden" name="_captcha" value="false" />
-            <input type="hidden" name="_template" value="table" />
-            <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" />
-            <div class="ulasan-row">
-              <label>Nama<input type="text" name="nama" required placeholder="Nama Anda" /></label>
-              <label>Kota<input type="text" name="kota" placeholder="Kota Anda" /></label>
-            </div>
-            <label>Rating
-              <select name="rating" required>
-                <option value="5">★★★★★ 5 - Sangat puas</option>
-                <option value="4">★★★★☆ 4 - Puas</option>
-                <option value="3">★★★☆☆ 3 - Cukup</option>
-                <option value="2">★★☆☆☆ 2 - Kurang</option>
-                <option value="1">★☆☆☆☆ 1 - Tidak puas</option>
-              </select>
-            </label>
-            <label>Ulasan Anda<textarea name="ulasan" rows="4" required placeholder="Ceritakan pengalaman Anda..."></textarea></label>
-            <button class="btn btn-primary" type="submit">Kirim Ulasan</button>
-          </form>
+          ${formulirUlasan}
           ${
             toko.linkUlasanGoogle
               ? `<p class="ulasan-alt" style="text-align:center;margin-top:14px;">Atau tulis langsung di <a href="${esc(toko.linkUlasanGoogle)}" target="_blank" rel="noopener">Google Reviews</a>.</p>`
